@@ -1,0 +1,7 @@
+body {
+  background: rgb(255, 255, 255);
+}
+.wrapper-table > table
+{
+    width: 100%;
+}

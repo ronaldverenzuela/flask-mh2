@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+  
+  <form class="form-signin" action="/update/{{contact.0}}" method="POST">
+    
+    <input type="text" class="form-control" id="factura" name="factura" placeholder="factura" value="{{contact.1}}">
+    <input type="text" class="form-control" id="cliente" name="cliente" placeholder="cliente" value="{{contact.2}}">
+    <input inputmode="numeric" class="form-control" id="monto" name="monto" placeholder="monto" value="{{contact.6}}" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">    
+    <center>
+    <button class=" btn btn-lg btn-primary" type="submit">Modificar</button>
+    </center>
+  </form>
+  </form>
+</div>
+
+
+{% endblock%}

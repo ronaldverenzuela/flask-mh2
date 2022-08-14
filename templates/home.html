@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!--<div class="jumbotron"> -->
+  <div class="col-md-4 offset-md-4">
+    <div class="card card-body mp-4">
+      <form class="form-signin" action="/" method="POST">
+        <div class="form-group">
+          <center>
+            <img src = "{{url_for ('static', filename = '/images/piramidelogo.png')}}" width = "100" height = "100" />
+          </center>
+        </div>
+        <div class="form-group">         
+           
+          <input type="text" class="form-control" id="factura" name="factura" placeholder="factura">
+                   
+                
+        </div>
+        <div class="form-group">
+          
+          <input type="text" class="form-control" id="cliente" name="cliente" placeholder="cliente">
+        </div>
+
+        <div class="form-group">
+          <input type="date" class="form-control" id="fecha" name="fecha" placeholder="fecha"
+       value="today"
+       min="2018-01-01" max="2060-12-31">
+         <!-- <input type="text" class="form-control" id="fecha" name="fecha" placeholder="fecha">-->
+        </div>
+
+        
+        
+                
+        
+       
+        
+          
+              
+                
+        
+       <div class="form-group">
+         
+        <input inputmode="numeric" class="form-control" id="diascredito" name="diascredito" placeholder="Dias de credito" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">    
+        </div>
+                       
+        <div class="form-group">
+         
+          <input inputmode="numeric" class="form-control" id="monto" name="monto" placeholder="monto" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">    
+        </div>
+        <div class="form-group">
+          <div class="form-group">
+          
+            <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="descripcion">
+          </div>
+          <center>
+          <button class=" btn btn-sm btn-primary" type="submit">Agregar</button>
+          </center>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+<!--</div> -->
+
+
+{% endblock%}

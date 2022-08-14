@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row-md-5 offset-md-1">
+    
+
+    <div class="col">
+        
+    
+            <div class="col-md-7">
+
+                <center>
+                    <form>
+                    <h1 class="display-4" style="color:#ff0037">   Total Venta = {{dato2}}   </h1>
+                </form>
+                    </center>
+                 <table class="table table-striped table-hover table-bordered bg-white table-sm" class="wrapper-table" class="jumbotron">
+                    <thead>
+                    
+                      <tr>
+
+                        <td style="text-align: center;">Nº Factura</td>                        
+                        <td style="text-align: center;">Cliente</td>                        
+                        <td style="text-align: center;">Monto</td>
+                       <!-- <td style="text-align: center;">Operacion</td>-->
+                      </tr>
+                    </thead>
+                    
+                    {% for table in tabla1 %}
+                    <tr>
+
+                        <td style="text-align: center;">{{table.1}}</td>
+                        <td style="text-align: center;">{{table.2}}</td>
+                        <td style="text-align: right;">{{table.6}}</td>
+                        
+                        <td>
+                            <div class="row-md-7">    
+                        <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>
+                        </td>
+                        <td>
+                        <a href="/delete/{{table.0}}" class="btn btn-sm btn-danger btn-delete">borrar</a>
+                        </td>
+                        <td>
+                        <a href="/relacion/factura/{{table.1}}" class="btn btn-sm btn-success ">Abonar</a>
+                        </td>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+
+                </table>
+               
+            </div>
+           
+    </div>
+   
+</div>
+{% endblock%}

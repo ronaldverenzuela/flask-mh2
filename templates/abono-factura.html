@@ -1,0 +1,35 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<div class="col-md-4 offset-md-4">
+    <div class="card card-body mp-4">
+<form class="form-signin" action="/abono/factura/add/{{cliente2}}/{{factura2}}" method="POST">
+    <div class="form-group">
+      <center>
+        <img src = "{{url_for ('static', filename = '/images/piramidelogo.png')}}" width = "100" height = "100" />
+      </center>
+    </div>
+
+    <div class="form-group">  
+      <input type="text" class="form-control" id="abono" name="abono" placeholder="Ingrese el monoto del abono">                  
+    </div>
+    <div class="form-group">
+        <input type="date" class="form-control" id="fecha" name="fecha" placeholder="fecha"
+     value="today"
+     min="2018-01-01" max="2060-12-31">
+       <!-- <input type="text" class="form-control" id="fecha" name="fecha" placeholder="fecha">-->
+      </div>
+      <div class="form-group">
+      <center>
+        <button class=" btn btn-sm btn-primary" type="submit">Agregar</button>
+        </center>
+    </div>
+</form>
+</div>
+</div>
+
+
+{% endblock%}
