@@ -264,7 +264,8 @@ def run_prog():
     print("runnnnnnn")
 # Make sure this we are executing this file
 if __name__ == '__main__':
-    app.run(host='192.168.1.102', port=5000,debug=True)
+    app.run(debug=False)
+    #app.run(host='192.168.1.102', port=5000,debug=True)
 
 
 
