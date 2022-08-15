@@ -19,9 +19,9 @@
                     
                       <tr>
 
-                        <td style="text-align: center;">Nº Factura</td>                        
-                        <td style="text-align: center;">Cliente</td>                        
-                        <td style="text-align: center;">Monto</td>
+                        <td style="text-align: center;"><h5 >Nº Factura</h5></td>                        
+                        <td  style="text-align: center;" valign="middle"><h5 >Cliente</h5></td>                        
+                        <td style="text-align: center;"><h5 >Monto</h5></td>
                        <!-- <td style="text-align: center;">Operacion</td>-->
                       </tr>
                     </thead>
@@ -33,15 +33,16 @@
                         <td style="text-align: center;">{{table.2}}</td>
                         <td style="text-align: right;">{{table.6}}</td>
                         
-                        <td>
+                        
                             <div class="row-md-7">    
-                        <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>
+                       <!-- <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>-->
+                      <!-- <td> </td>-->
+                        <td>
+                            <a href="/relacion/factura/{{table.1}}" class="btn btn-sm btn-success ">Abonar</a>
                         </td>
                         <td>
-                        <a href="/delete/{{table.0}}" class="btn btn-sm btn-danger btn-delete">borrar</a>
-                        </td>
-                        <td>
-                        <a href="/relacion/factura/{{table.1}}" class="btn btn-sm btn-success ">Abonar</a>
+                            <a href="/delete/{{table.0}}" class="btn btn-sm btn-danger btn-delete">borrar</a>
+                        
                         </td>
                             </div>
                         </td>

@@ -12,10 +12,21 @@ import os
 app = Flask("Web")
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
-app.config['MYSQL_HOST']='localhost'
-app.config['MYSQL_USER']='ronald'
-app.config['MYSQL_PASSWORD']='Ronald1234,'
-app.config['MYSQL_DB']='piramide'
+
+########### Mysql Clever Cloud #######################
+app.config['MYSQL_HOST']='bywrvr7abbp3kmrjrowf-mysql.services.clever-cloud.com'
+app.config['MYSQL_USER']='ut78srmw5ocilvva'
+app.config['MYSQL_PASSWORD']='7tQQwczWpijptWYA2Ixd'
+app.config['MYSQL_DB']='bywrvr7abbp3kmrjrowf'
+
+
+############ Mysql Local #######################
+#app.config['MYSQL_HOST']='localhost'
+#app.config['MYSQL_USER']='ronald'
+#app.config['MYSQL_PASSWORD']='Ronald1234,'
+#app.config['MYSQL_DB']='piramide'
+
+
 mysql=MySQL(app)
 #cur = mysql.connection.cursor()
 #print('cur = ',cur)
@@ -45,6 +56,9 @@ def abono_add(cliente2,factura2):
         abono=float(abono)
         #abono="{:.2f}".format(abono)
         saldo=saldo-abono
+        saldo="{:.2f}".format(saldo)
+        abono="{:.2f}".format(abono)
+
         saldo=str(saldo)
         abono=str(abono)
         monto=saldo
@@ -269,7 +283,7 @@ if __name__ == '__main__':
     #app.run(debug=False)
     #app.run(host='192.168.1.102', port=5000,debug=True)
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='192.168.1.102', port=port, debug=True)
 
 
 
