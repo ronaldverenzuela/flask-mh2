@@ -7,6 +7,7 @@ import numpy as np
 from flask_mysqldb import MySQL
 from flask import Flask, render_template, request, redirect, url_for, flash
 import re
+import os
 #app = Flask(__name__)
 app = Flask("Web")
 app.secret_key = 'super secret key'
@@ -264,8 +265,10 @@ def run_prog():
     print("runnnnnnn")
 # Make sure this we are executing this file
 if __name__ == '__main__':
-    app.run(debug=False)
+    #app.run(debug=False)
     #app.run(host='192.168.1.102', port=5000,debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
 
 
 
