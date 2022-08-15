@@ -1,11 +1,13 @@
 
-from crypt import methods
+#from crypt import methods
 from datetime import datetime, timedelta
 #import numpy as np
 from flask_mysqldb import MySQL
 from flask import Flask, render_template, request, redirect, url_for, flash
 import re
 import os
+
+
 #app = Flask(__name__)
 app = Flask("Web")
 app.secret_key = 'super secret key'
@@ -21,6 +23,7 @@ mysql=MySQL(app)
 @app.route('/test')
 def test():
     return "Home Page"
+
 
 @app.route('/abono/factura/add/<cliente2>/<factura2>',methods=['POST']) 
 def abono_add(cliente2,factura2):
