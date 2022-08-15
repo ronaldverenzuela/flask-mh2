@@ -3,7 +3,7 @@
 #from time import monotonic
 from crypt import methods
 from datetime import datetime, timedelta
-import numpy as np
+#import numpy as np
 from flask_mysqldb import MySQL
 from flask import Flask, render_template, request, redirect, url_for, flash
 import re
