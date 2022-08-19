@@ -1,6 +1,7 @@
 
 #from crypt import methods
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta,date
+
 #import numpy as np
 from flask_mysqldb import MySQL
 from flask import Flask, render_template, request, redirect, url_for, flash
@@ -46,27 +47,67 @@ def abono_add(cliente2,factura2):
         cur=mysql.connection.cursor()    
         cur.execute(f"SELECT * FROM " +cliente2+ f" WHERE factura = {factura2}")
         data=cur.fetchall()
+        print('dataaaaaaa ',data)
         print('>>>>>>>>>>>>>>>>>>> factura >>>>>>>>>>>>>>><')
         print(data[:1])
+        
+        total_abono=0.0
         for j in data:
             cliente=j[2]
             saldo=j[6]
+            factura=j[1]
+            abono2=j[5]
+            abono2=float(abono2)
+            total_abono=total_abono + abono2
+
         saldo=float(saldo)
         #saldo="{:.2f}".format(saldo)
         abono=float(abono)
+        total_abono=total_abono+abono
         #abono="{:.2f}".format(abono)
         saldo=saldo-abono
         saldo="{:.2f}".format(saldo)
         abono="{:.2f}".format(abono)
+        
 
         saldo=str(saldo)
         abono=str(abono)
+       
         monto=saldo
+        total_abono="{:.2f}".format(total_abono)
         print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
         cur=mysql.connection.cursor()            
         cur.execute('INSERT INTO ' +cliente2+ ' (factura,cliente,fecha,monto,abono,saldo) VALUES(%s,%s,%s,%s,%s,%s)',
         (factura2,cliente,fecha,monto,abono,saldo))
         mysql.connection.commit()
+
+
+        cur=mysql.connection.cursor()    
+        cur.execute(f"SELECT * FROM tabla1 WHERE factura = {factura}")
+        data=cur.fetchall()
+        print('vvvvvvvvvvvvvvvvvvvvvvvv')
+        print(data)
+        print('vvvvvvvvvvvvvvvvvvvvvvvvvv')
+        cur=mysql.connection.cursor()
+        cliente=cliente.upper() # transformamos a mayusculas
+        #cur.execute('SELECT * FROM tabla1 WHERE id = %s',(id))
+        #cur.execute("""
+        #    UPDATE tabla1
+        #    SET id = %s,
+        #        cliente = %s,
+        #        monto = %s,
+        #        abono=%s,
+        #        saldo=%s
+        #    WHERE factura = %s
+        #""",(factura,cliente, monto,id,abono,saldo))
+        cur.execute("""
+            UPDATE tabla1
+            SET abono=%s,
+                saldo=%s
+            WHERE factura = %s
+        """,(total_abono,saldo,factura))
+        mysql.connection.commit()
+        
         #/relacion/factura/CARNICERIA EL MAUTE DEL LLANO
     #return "Home Page"
     return redirect(url_for('relacion_factura_cliente',factura=factura2))
@@ -102,27 +143,119 @@ def relacion_factura_cliente(factura):
     return render_template('relacion-factura.html',data=data,data2=factura,cliente2=factura2,cliente=cliente)
 
 
-@app.route('/relacion/factura')
-def relacion_factura():
-    cur = mysql.connection.cursor()     
-    cur.execute("SHOW TABLES") 
-    mysql.connection.commit()
-    for x in cur:
-      print(x)
+@app.route('/facturas_vencidas')
+def facturas_vencidas():
+    cur=mysql.connection.cursor()
+    cur.execute('SELECT * FROM tabla1')
+    data=cur.fetchall()      
+    print('######################################################')
+    print(data)
+    print('######################################################')
+    hoy = datetime.now()
+    hoy=str(hoy)
+    hoy=hoy[:11]
+    hoy=hoy.strip()
+    print('hoy 1 =',hoy)
+    hoy=datetime.strptime(hoy, "%Y-%m-%d")
+    #hoy=str(hoy)
+    #hoy=hoy[:11]
+    fact_venc=[]
+    fact_sin_pagar=[]
+    a=0.0   
+   # # recorremos la columna MONTO
+    for j in data:  
+        print(j[6])
+        
+        saldo=j[9]
+        print('saldo ====>',saldo)
+        saldo=float(saldo)
+        if saldo == 0.00:
+            pass
+        else:
+            
+            fact_sin_pagar.append(j)
 
-    return render_template('relacion-factura.html')
+            fecha=j[5] 
+            fecha=str(fecha)
+            #fecha=re.sub(r"^\s+", "", fecha)
+            fecha=fecha.strip()
+
+            fecha=datetime.strptime(fecha, "%Y-%m-%d")
+            print('hoy 2 =',hoy)
+            print('fecha=',fecha)
+            dias=(hoy-fecha).days
+            print('hoy = ',hoy)
+            print('fecha',fecha)
+            print('dias = ',dias)
+            if dias >=0:
+                a=float(j[9])+a  
+                print('a = ',a)
+                fact_venc.append(j)
+                print('################### factura vencida ###########################')
+                print(fact_venc)
+                print('###############################################################')
+    a="{:.2f}".format(a)
+    a=str(a)
+    print('aaaaaaaaaaaa = ',a)     
+    return render_template('facturas_vencidas.html',tabla1=fact_venc,dato2=a)
 
 
 #CREATE TABLE IF NOT EXISTS `clientes`
 @app.route('/factcobrar')
 def fact_x_cobrar():
-    mycursor = mysql.connection.cursor() 
-    mycursor.execute("CREATE TABLE IF NOT EXISTS customers6 (id INT(11) NOT NULL AUTO_INCREMENT, PRIMARY KEY (id) ,name TEXT, address VARCHAR(255))")
-    mysql.connection.commit()
-    mycursor.execute("SHOW TABLES") 
-    for x in mycursor:
-      print(x)
-    return "Home Page"
+    cur=mysql.connection.cursor()
+    cur.execute('SELECT * FROM tabla1')
+    data=cur.fetchall()      
+    print('######################################################')
+    print(data)
+    print('######################################################')
+    hoy = datetime.now()
+    hoy=str(hoy)
+    hoy=hoy[:11]
+    hoy=hoy.strip()
+    print('hoy 1 =',hoy)
+    hoy=datetime.strptime(hoy, "%Y-%m-%d")
+    #hoy=str(hoy)
+    #hoy=hoy[:11]
+    fact_venc=[]
+    fact_sin_pagar=[]
+    a=0.0   
+   # # recorremos la columna MONTO
+    for j in data:  
+        print(j[6])
+        
+        saldo=j[9]
+        print('saldo ====>',saldo)
+        saldo=float(saldo)
+        if saldo == 0.00:
+            pass
+        else:
+            a=float(j[9])+a  
+            print('a = ',a)
+            fact_sin_pagar.append(j)
+
+        fecha=j[5] 
+        #fecha=str(fecha)
+        ##fecha=re.sub(r"^\s+", "", fecha)
+        #fecha=fecha.strip()
+        #
+        #fecha=datetime.strptime(fecha, "%Y-%m-%d")
+        #print('hoy 2 =',hoy)
+        #print('fecha=',fecha)
+        #dias=(hoy-fecha).days
+        #print('hoy = ',hoy)
+        #print('fecha',fecha)
+        #print('dias = ',dias)
+        #if dias >=0:
+        #    fact_venc.append(j)
+        #    print('################### factura vencida ###########################')
+        #    print(fact_venc)
+        #    print('###############################################################')
+    a="{:.2f}".format(a)
+    a=str(a)
+    print('aaaaaaaaaaaa = ',a)     
+    return render_template('factura_por_cobrar.html',tabla1=fact_sin_pagar,dato2=a)
+    
 
 @app.route('/delete/<string:id>')
 def delete_factura(id):
@@ -166,6 +299,7 @@ def edit_fact(id):
     cur=mysql.connection.cursor()    
     cur.execute(f"SELECT * FROM tabla1 WHERE id = {id}")
     data=cur.fetchall()
+    
     print(data)
     return render_template("edit-factura.html",contact=data[0])
 
@@ -217,7 +351,8 @@ def home():
             mysql.connection.commit()
             factura_existe=0
             fact='f'+factura
-            for j in cur:              
+            for j in cur: 
+                             
                 print(j[0])
                 if(str(j[0]) == str(fact)):
                     flash('Cliente Existe')
@@ -245,9 +380,11 @@ def home():
             fechavencimiento=str(fechavencimiento)
             fechavencimiento=fechavencimiento[:11]
             cur=mysql.connection.cursor()
+            abono='0.00'
+            saldo=monto
            # cliente=cliente.upper() # transformamos a mayusculas            
-            cur.execute('INSERT INTO tabla1 (factura,cliente,monto,fecha,diascredito,descripcion,fechavencimiento) VALUES(%s,%s,%s,%s,%s,%s,%s)',
-            (factura,cliente,monto,fecha,diascredito,descripcion,fechavencimiento))
+            cur.execute('INSERT INTO tabla1 (factura,cliente,monto,fecha,diascredito,descripcion,fechavencimiento,abono,saldo) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)',
+            (factura,cliente,monto,fecha,diascredito,descripcion,fechavencimiento,abono,saldo))
             mysql.connection.commit()
             print('aaaaaaaaa')
             ############ crear bd para cliente
@@ -261,7 +398,7 @@ def home():
                 mycursor.execute("CREATE TABLE IF NOT EXISTS " + factura2 + " (id INT(11) NOT NULL AUTO_INCREMENT, PRIMARY KEY (id) ,factura TEXT, cliente TEXT,fecha TEXT,monto TEXT,abono TEXT,saldo TEXT)")
                 mysql.connection.commit()
                 saldo=monto
-                abono='0'
+                abono='0.00'
                 cur=mysql.connection.cursor()
                 cur.execute('INSERT INTO ' + factura2 + ' (factura,cliente,monto,fecha,abono,saldo) VALUES(%s,%s,%s,%s,%s,%s)',
                 (factura,cliente,monto,fecha,abono,saldo))

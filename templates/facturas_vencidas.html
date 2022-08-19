@@ -11,13 +11,14 @@
 
                 <center>
                     <form>
-                        <table class="table table-striped table-hover table-bordered bg-white table-sm" class="wrapper-table" class="jumbotron">
+                        
+                        <table class="table table-striped table-hover table-bordered bg-white table-sm"  class="wrapper-table" class="jumbotron">
                             <thead>
                             
                               <tr>
                                 <td>
                                     <center>
-                                <h1 class="display-4" style="color:#ff0037">   Total Venta = {{dato2}}   </h1>
+                                <h1 class="display-4" style="color:#ff0037">   Total a Cobrar = {{dato2}}   </h1>
                               </center> 
                             </td>
                                <!-- <td style="text-align: center;">Operacion</td>-->
@@ -32,8 +33,11 @@
                       <tr>
 
                         <td style="text-align: center;"><h5 >Nº Factura</h5></td>                        
-                        <td  style="text-align: center;" valign="middle"><h5 >Cliente</h5></td>                        
+                        <td  style="text-align: center;" valign="middle"><h5 >Cliente</h5></td> 
+                        <td style="text-align: center;"><h5 >Fecha Venc</h5></td>                       
                         <td style="text-align: center;"><h5 >Monto</h5></td>
+                        <td style="text-align: center;"><h5 >Abono</h5></td>
+                        <td style="text-align: center;"><h5 >Debe</h5></td>
                        <!-- <td style="text-align: center;">Operacion</td>-->
                       </tr>
                     </thead>
@@ -43,7 +47,10 @@
 
                         <td style="text-align: center;">{{table.1}}</td>
                         <td style="text-align: center;">{{table.2}}</td>
+                        <td style="text-align: center;">{{table.5}}</td>
                         <td style="text-align: right;">{{table.6}}</td>
+                        <td style="text-align: right;">{{table.8}}</td>
+                        <td style="text-align: right;">{{table.9}}</td>
                         
                         
                             <div class="row-md-7">    

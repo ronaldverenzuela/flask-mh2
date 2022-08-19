@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{%  set datolen = data|length  %}
+
 
     <h1 class="display-8" style="color:#ff0037"> Factura Nº  {{data2}}  </h1>
     <h1 class="display-8" style="color:#ff0037"> Cliente: {{cliente}}    </h1>
@@ -10,23 +12,30 @@
             
               <tr>
 
-                <td style="text-align: center;">Nº Factura</td>                        
+                <!-- <td style="text-align: center;">Nº Factura</td> -->                       
                 <td style="text-align: center;">Fecha</td>                        
                 <td style="text-align: center;">Abono</td>
                 <td style="text-align: center;">Debe</td>
                <!-- <td style="text-align: center;">Operacion</td>-->
               </tr>
             </thead>
-            
+        
+            {% set incremento= namespace(a=0)  %}
+            {% set suma = 1 %}
             {% for table in data %}
             <tr>
-
-                <td style="text-align: center;">{{table.1}}</td>                
+              
+              {% set incremento.a = incremento.a + 1  %}
+                
+              
+               <!-- <td style="text-align: center;">{{table.1}}</td> -->               
                 <td style="text-align: center;">{{table.3}}</td>
                 <td style="text-align: right;">{{table.5}}</td>
                 <td style="text-align: right;">{{table.6}}</td>
                 
-                <td>
+               
+                  {% if incremento.a == datolen  %}
+                  <td>
                     <div class="row-md-7">  
                         <center>
                 <a href="/abono/factura/{{table.1}}/{{cliente2}}" class="btn btn-sm btn-success ">Abonar</a>          
@@ -43,9 +52,13 @@
                 </center>
             </td>
                     </div>
+                  
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}
+
+            
             
 
         </table>
