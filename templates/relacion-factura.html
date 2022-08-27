@@ -37,10 +37,13 @@
                   {% if incremento.a == datolen  %}
                   <td>
                     <div class="row-md-7">  
-                        <center>
-                <a href="/abono/factura/{{table.1}}/{{cliente2}}" class="btn btn-sm btn-success ">Abonar</a>          
-                </center>
-                </td>
+                      {% if table.6 == "0.00"  %}
+                      {% else %}
+                          <center>
+                            <a href="/abono/factura/{{table.1}}/{{cliente2}}" class="btn btn-sm btn-success ">Abonar</a>          
+                          </center>
+                      {% endif %}
+                  </td>
                 <td>
                     <center>
                 <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>    

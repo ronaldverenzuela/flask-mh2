@@ -29,23 +29,48 @@
                  <table class="table table-striped table-hover table-bordered bg-white table-sm" class="wrapper-table" class="jumbotron">
                     <thead>
                     
-                      <tr>
+                      <tr class="table-success">
 
-                        <td style="text-align: center;"><h5 >Nº Factura</h5></td>                        
-                        <td  style="text-align: center;" valign="middle"><h5 >Cliente</h5></td>                        
-                        <td style="text-align: center;"><h5 >Monto</h5></td>
+                        <td style="text-align: center;"><h5 >FACTURA</h5></td>                        
+                        <td  style="text-align: center;" valign="middle"><h5 >CLIENTE</h5></td>  
+                        <td  style="text-align: center;" valign="middle"><h5 >DESCRIPCION</h5></td>  
+                        <td style="text-align: center;"><h5 >FECHA</h5></td>
+                        <td style="text-align: center;"><h5 >D/CRED</h5></td>     
+                        <td style="text-align: center;"><h5 >FECH_VENC</h5></td>  
+                                  
+                        <td style="text-align: center;"><h5 >MONTO</h5></td>
+                        <td style="text-align: center;"><h5 >ABONO</h5></td>
+                        <td style="text-align: center;"><h5 >DEBE</h5></td>
                        <!-- <td style="text-align: center;">Operacion</td>-->
                       </tr>
                     </thead>
                     
                     {% for table in tabla1 %}
                     <tr>
+                        {% if table.9 == "0.00"  %}
 
-                        <td style="text-align: center;">{{table.1}}</td>
-                        <td style="text-align: center;">{{table.2}}</td>
-                        <td style="text-align: right;">{{table.6}}</td>
+                            <td style="text-align: center;" ><font color="red">{{table.1}}</font></td>
+                            <td style="text-align: center;" ><font color="red">{{table.2}}</font></td>
+                            <td style="text-align: center;" ><font color="red">{{table.7}}</font></td>
+                            <td style="text-align: center;" ><font color="red">{{table.3}}</font></td>
+                            <td style="text-align: center;" ><font color="red">{{table.4}}</font></td>
+                            <td style="text-align: center;" ><font color="red">{{table.5}}</font></td>
+                            <td style="text-align: right;"  ><font color="red">{{table.6}}</font></td>
+                            <td style="text-align: right;"  ><font color="red">{{table.8}}</font></td>
+                            <td style="text-align: right;"  ><font color="red">{{table.9}}</font></td>    
+                        {% else %}
+                            <td style="text-align: center;">{{table.1}}</td>
+                            <td style="text-align: center;">{{table.2}}</td>
+                            <td style="text-align: center;">{{table.7}}</td>
+                            <td style="text-align: center;">{{table.3}}</td>
+
+                            <td style="text-align: center;">{{table.4}}</td>
+                            <td style="text-align: center;">{{table.5}}</td>
+                            <td style="text-align: right;">{{table.6}}</td>
+                            <td style="text-align: right;">{{table.8}}</td>
+                            <td style="text-align: right;">{{table.9}}</td>
                         
-                        
+                        {% endif %}
                             <div class="row-md-7">    
                        <!-- <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>-->
                       <!-- <td> </td>-->

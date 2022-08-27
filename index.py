@@ -36,6 +36,67 @@ mysql=MySQL(app)
 def test():
     return "Home Page"
 
+@app.route('/caja',methods=['GET','POST'])
+def caja():
+    if request.method == 'POST':
+        titulo=request.form['titulo']
+        descripcion=request.form['descripcion']
+        fecha=request.form['fecha']  
+        monto=request.form['monto'] 
+        if ((not titulo) or (not descripcion) or (not fecha) or (not monto)):        
+            print('debe introducir todos los campos')
+            return redirect(url_for('caja'))
+
+        else:
+            monto=float(monto) # monoto como float
+            monto="{:.2f}".format(monto)  # formato de 2 decimales
+            monto=str(monto)  # devolvemos a string      
+            cur=mysql.connection.cursor() 
+            cur.execute('INSERT INTO egresos (titulo,descripcion,fecha,monto) VALUES(%s,%s,%s,%s)',
+                (titulo,descripcion,fecha,monto))
+            mysql.connection.commit()
+            print('GUARDADOOOOOOO')
+
+    cur=mysql.connection.cursor()
+    cur.execute('SELECT * FROM tabla1')
+    data=cur.fetchall()      
+    caja=0.0
+    a=0.0   
+   # # recorremos la columna ABONO
+    for j in data:  
+        abono=j[8]
+        abono=float(abono)
+        caja=caja+abono  
+    caja2=caja      
+    caja="{:.2f}".format(caja)   
+    caja=str(caja)
+    print('Caja = ',caja) 
+    a="{:.2f}".format(a)
+    a=str(a)
+    print('aaaaaaaaaaaa = ',a)   
+    cur=mysql.connection.cursor()
+    cur.execute('SELECT * FROM egresos ORDER BY id DESC')
+    data=cur.fetchall() 
+    gastos='0.0' 
+    gastos2=0.0
+
+    for j in data:  
+        gastos=j[4]
+        
+        gastos=float(gastos)
+        gastos2=gastos2+gastos
+
+    print('Suma de Gastos = ',gastos2)  
+    gastos=gastos2  
+    gastos2=caja2-gastos2  
+    print('gastos = ',gastos) 
+    gastos2="{:.2f}".format(gastos2)
+    gastos2=str(gastos2)
+    gastos="{:.2f}".format(gastos)
+    gastos=str(gastos)
+    print('gastos = ',gastos2) 
+    return render_template('caja.html',gastos=gastos,gastos2=gastos2,caja=caja,tabla1=data)
+
 
 @app.route('/abono/factura/add/<cliente2>/<factura2>',methods=['POST']) 
 def abono_add(cliente2,factura2):
@@ -61,18 +122,15 @@ def abono_add(cliente2,factura2):
             total_abono=total_abono + abono2
 
         saldo=float(saldo)
-        #saldo="{:.2f}".format(saldo)
         abono=float(abono)
         total_abono=total_abono+abono
-        #abono="{:.2f}".format(abono)
         saldo=saldo-abono
         saldo="{:.2f}".format(saldo)
-        abono="{:.2f}".format(abono)
-        
+        abono="{:.2f}".format(abono)        
 
         saldo=str(saldo)
         abono=str(abono)
-       
+
         monto=saldo
         total_abono="{:.2f}".format(total_abono)
         print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
@@ -90,27 +148,17 @@ def abono_add(cliente2,factura2):
         print('vvvvvvvvvvvvvvvvvvvvvvvvvv')
         cur=mysql.connection.cursor()
         cliente=cliente.upper() # transformamos a mayusculas
-        #cur.execute('SELECT * FROM tabla1 WHERE id = %s',(id))
-        #cur.execute("""
-        #    UPDATE tabla1
-        #    SET id = %s,
-        #        cliente = %s,
-        #        monto = %s,
-        #        abono=%s,
-        #        saldo=%s
-        #    WHERE factura = %s
-        #""",(factura,cliente, monto,id,abono,saldo))
         cur.execute("""
             UPDATE tabla1
             SET abono=%s,
                 saldo=%s
             WHERE factura = %s
         """,(total_abono,saldo,factura))
-        mysql.connection.commit()
+        mysql.connection.commit()        
         
-        #/relacion/factura/CARNICERIA EL MAUTE DEL LLANO
-    #return "Home Page"
     return redirect(url_for('relacion_factura_cliente',factura=factura2))
+
+
 
 @app.route('/abono/factura/<factura>/<cliente2>')
 def abono_factura(factura,cliente2):  
@@ -120,7 +168,10 @@ def abono_factura(factura,cliente2):
     cur.execute(f"SELECT * FROM " +cliente2+ f" WHERE factura = {factura}")
     data=cur.fetchall()
     print('Tabla de Facturaaaaaaaaaa = ',data)
-    return render_template('abono-factura.html',cliente2=cliente2,factura2=factura)
+    for j in data:
+        debe=j[6]
+    print('debe ==> ',debe)
+    return render_template('abono-factura.html',cliente2=cliente2,factura2=factura,debe=debe)
 
 @app.route('/relacion/factura/<factura>')
 def relacion_factura_cliente(factura):
@@ -171,15 +222,11 @@ def facturas_vencidas():
         saldo=float(saldo)
         if saldo == 0.00:
             pass
-        else:
-            
+        else:            
             fact_sin_pagar.append(j)
-
             fecha=j[5] 
-            fecha=str(fecha)
-            #fecha=re.sub(r"^\s+", "", fecha)
+            fecha=str(fecha)            
             fecha=fecha.strip()
-
             fecha=datetime.strptime(fecha, "%Y-%m-%d")
             print('hoy 2 =',hoy)
             print('fecha=',fecha)
@@ -214,9 +261,7 @@ def fact_x_cobrar():
     hoy=hoy[:11]
     hoy=hoy.strip()
     print('hoy 1 =',hoy)
-    hoy=datetime.strptime(hoy, "%Y-%m-%d")
-    #hoy=str(hoy)
-    #hoy=hoy[:11]
+    hoy=datetime.strptime(hoy, "%Y-%m-%d")    
     fact_venc=[]
     fact_sin_pagar=[]
     a=0.0   
@@ -234,23 +279,7 @@ def fact_x_cobrar():
             print('a = ',a)
             fact_sin_pagar.append(j)
 
-        fecha=j[5] 
-        #fecha=str(fecha)
-        ##fecha=re.sub(r"^\s+", "", fecha)
-        #fecha=fecha.strip()
-        #
-        #fecha=datetime.strptime(fecha, "%Y-%m-%d")
-        #print('hoy 2 =',hoy)
-        #print('fecha=',fecha)
-        #dias=(hoy-fecha).days
-        #print('hoy = ',hoy)
-        #print('fecha',fecha)
-        #print('dias = ',dias)
-        #if dias >=0:
-        #    fact_venc.append(j)
-        #    print('################### factura vencida ###########################')
-        #    print(fact_venc)
-        #    print('###############################################################')
+        fecha=j[5]         
     a="{:.2f}".format(a)
     a=str(a)
     print('aaaaaaaaaaaa = ',a)     
@@ -279,8 +308,7 @@ def update_fact(id):
         print('dataaaaaaaa = ',data)
         print('id = ',id)
         cur=mysql.connection.cursor()
-        cliente=cliente.upper() # transformamos a mayusculas
-        #cur.execute('SELECT * FROM tabla1 WHERE id = %s',(id))
+        cliente=cliente.upper() # transformamos a mayusculas        
         cur.execute("""
             UPDATE tabla1
             SET factura = %s,
@@ -331,9 +359,7 @@ def home():
         monto=request.form['monto']  
         fecha=request.form['fecha']
         diascredito=request.form['diascredito']   
-        descripcion=request.form['descripcion'] 
-        #fecha=request.form['fecha']    
-        #print(fecha) 
+        descripcion=request.form['descripcion']         
         monto=float(monto) # monoto como float
         monto="{:.2f}".format(monto)  # formato de 2 decimales
         monto=str(monto)  # devolvemos a string
@@ -342,10 +368,7 @@ def home():
             print('debe introducir todos los campos')
             return render_template("home.html")
             
-        else:
-            #cur=mysql.connection.cursor()
-            #cur.execute('SELECT * FROM tabla1')
-            #data=cur.fetchall()  
+        else:             
             cur = mysql.connection.cursor()     
             cur.execute("SHOW TABLES") 
             mysql.connection.commit()
@@ -360,18 +383,7 @@ def home():
                     factura_existe=1
                     return render_template("home.html")
                     break     
-            #print('clientes = ',x)
-            # recorre todos los clientes existentes en tabla1
-            #for j in x:
-            #    print(j[2])
-            #    ver_cliente.append(j[2])
-            #    print('ver_cliente ',ver_cliente) 
-            # verifica si exite el cliente en la tabla1
             
-            #for j in ver_cliente:
-                       
-
-            #datetime.strptime("2021-12-25", "%Y-%m-%d")
             fecha=datetime.strptime(fecha, "%Y-%m-%d")
             fechavencimiento=fecha + timedelta(days=8)
             fecha=str(fecha)
@@ -404,7 +416,7 @@ def home():
                 (factura,cliente,monto,fecha,abono,saldo))
                 mysql.connection.commit()
             return redirect(url_for('ventas'))
-            #return render_template("ventas.html")
+            
     else:
         return render_template("home.html")
     
@@ -415,12 +427,14 @@ def about():
     return render_template("about.html")
 def run_prog():
     print("runnnnnnn")
-# Make sure this we are executing this file
+
+
+# Main Principal
 if __name__ == '__main__':
     #app.run(debug=False)
     #app.run(host='192.168.1.102', port=5000,debug=True)
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='192.168.1.102', port=port, debug=True)
+    app.run(host='192.168.1.101', port=port, debug=True)
 
 
 

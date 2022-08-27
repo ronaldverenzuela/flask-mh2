@@ -1,0 +1,126 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!--<div class="jumbotron"> -->
+<div class="row">
+    <div class="col-md-3 ">
+        <div class="card card-body mp-0">
+          <form class="form-signin" action="/caja" method="POST"> <!--method="POST"-->
+            <div class="form-group">   
+              <center>            
+              <h3 style="color:#1100ff"> Adicionar Gastos</h3>
+            </center>
+            </div>
+              <div class="form-group">            
+                <input type="text" class="form-control" id="titulo" name="titulo" placeholder="titulo">
+              </div>
+              <div class="form-group">            
+                <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="descripcion">
+              </div>                          
+
+              <div class="form-group">
+                <input type="date" class="form-control" id="fecha" name="fecha" placeholder="fecha"
+                  value="today"
+                  min="2018-01-01" max="2060-12-31">
+               <!-- <input type="text" class="form-control" id="fecha" name="fecha" placeholder="fecha">-->
+              </div>              
+              <div class="form-group">         
+                <input inputmode="numeric" class="form-control" id="monto" name="monto" placeholder="monto" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">    
+              </div>  
+              <div class="form-group">                  
+                  <center>
+                      <button class=" btn btn-sm btn-primary" type="submit">Agregar</button>
+                  </center>
+              </div>
+            
+          </form>
+        </div> 
+
+        <div class="col-md-0 ">
+          <div class="card card-body mp-0">       
+              <div class="form-group">               
+                <h1 style="color:#41722e">Caja = {{gastos2}}</h1>
+              </div>
+          </div>
+        </div>
+
+        <div class="col-md-0 ">
+          <div class="card card-body mp-0">       
+              <div class="form-group">               
+                <h1 style="color:#ff000d">Gastos = {{gastos}}</h1>
+              </div>
+          </div>
+        </div>
+    </div>
+    
+
+
+    <div class="col">
+        
+    
+        <div class="col-md-12">
+
+            <center>
+                <form>
+                    <table class="table table-striped table-hover table-bordered bg-white table-sm" class="wrapper-table" class="jumbotron">
+                       
+               
+            </form>
+                </center>
+             <table class="table table-striped table-hover table-bordered bg-white table-sm" class="wrapper-table" class="jumbotron">
+                <thead>
+                
+                  <tr class="table-success">
+
+                    <td style="text-align: center;"><h5 >TITULO</h5></td>                        
+                    <td  style="text-align: center;" valign="middle"><h5 >DESCRIPCION</h5></td>                        
+                    <td style="text-align: center;"><h5 >FECHA</h5></td>
+                    <td style="text-align: center;"><h5 >MONTO</h5></td>
+                   <!-- <td style="text-align: center;">Operacion</td>-->
+                  </tr>
+                </thead>
+                
+                {% for table in tabla1 %}
+                <tr>
+
+                    <td style="text-align: center;">{{table.1}}</td>
+                    <td style="text-align: center;">{{table.2}}</td>
+                    <td style="text-align: center;">{{table.3}}</td>
+                    <td style="text-align: right;">{{table.4}}</td>
+                    
+                    
+                        <div class="row-md-7">    
+                   <!-- <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>-->
+                  <!-- <td> </td>-->
+                    <td>
+                        <center>
+                        <a href="#"  class="btn btn-sm btn-success ">editar</a>
+                    </center>
+                </td>
+                    <td>
+                        <center>
+                        <a href="#" class="btn btn-sm btn-danger btn-delete">borrar</a>
+                        </center>
+                    </td>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                
+
+            </table>
+           
+        </div>
+       
+</div>
+
+
+
+
+</div>   
+<!--</div> -->
+
+
+{% endblock%}
