@@ -1,1 +1,1 @@
-"web: flask && gunicorn index:'create_app()'" 
+"web: flask && gunicorn app:index"
