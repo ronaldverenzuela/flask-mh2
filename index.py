@@ -24,6 +24,13 @@ app.config['SESSION_TYPE'] = 'filesystem'
 #app.config['MYSQL_PASSWORD']='7tQQwczWpijptWYA2Ixd'
 #app.config['MYSQL_DB']='bywrvr7abbp3kmrjrowf'
 
+######## railway
+#mysql://root:77fek9NreX2f1sBNNGVi@containers-us-west-135.railway.app:7300/railway
+
+#app.config['MYSQL_HOST']='localhost'
+#app.config['MYSQL_USER']='root'
+#app.config['MYSQL_PASSWORD']=''
+#app.config['MYSQL_DB']='railway'
 
 
 ############ Mysql Local #######################
