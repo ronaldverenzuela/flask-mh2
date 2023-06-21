@@ -1,1 +1,1 @@
-'web:gunicorn main:app'
+'web:flask && gunicorn main:app'
