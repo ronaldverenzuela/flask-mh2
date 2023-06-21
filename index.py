@@ -8977,8 +8977,11 @@ if __name__ == '__main__':
     #app.run(debug=False)
     #app.run(host='192.168.1.102', port=5000,debug=True)
     app.register_error_handler(401,status_401)
-    port = int(os.environ.get('PORT', 5000))
+    #port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('FLASK_DATABASE_PORT'))
     app.run(host='192.168.254.237', port=port, debug=True)
+    'FLASK_DATABASE_PORT'
+    'FLASK_DATABASE_PORT'
     #app.run(host='localhost', port=port, debug=True)
 
     
