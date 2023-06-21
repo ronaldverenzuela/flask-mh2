@@ -8980,9 +8980,12 @@ if __name__ == '__main__':
     #port = int(os.environ.get('PORT', 5000))
     port = int(os.environ.get('FLASK_DATABASE_PORT'))
     #app.run(host='192.168.254.237', port=port, debug=True)
-    app.run(host='0.0.0.0', port=port, debug=True)
-    'FLASK_DATABASE_PORT'
-    'FLASK_DATABASE_PORT'
+    app.run(debug=True, port=os.getenv("PORT", default=5000))
+    #app.run(host='0.0.0.0', port=port, debug=True)
+    #'FLASK_DATABASE_PORT'  app.run(debug=True, port=os.getenv("PORT", default=5000))
+    #'FLASK_DATABASE_PORT'  app.run(debug=True, port=os.getenv("PORT", default=5000))
+    #'FLASK_DATABASE_PORT'  app.run(debug=True, port=os.getenv("PORT", default=5000))
+    #'FLASK_DATABASE_PORT'
     #app.run(host='localhost', port=port, debug=True)
 
     
