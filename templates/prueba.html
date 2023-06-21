@@ -1,0 +1,93 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+
+
+{% with messages = get_flashed_messages(category_filter=["buscar_proveedor"]) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+    {% endfor %}
+    </ul>
+  {% endif %}
+  
+{% endwith %}
+
+
+<form class="form-signin f" action="/prueba" method="POST">
+<div class="input-group  class="form-group"  >
+    <div class="form-producto ml-4">
+        <h4>Producto</h4>
+        <select type="text" class="custom-select list-producto" id="producto" name="producto" >
+    </div> 
+
+      {% set glob=namespace() %}
+      {% set glob.counter=0 %}
+      {% for table in array_productos %}
+
+      <option value={{glob.counter}}>{{table}}</option>
+    
+      {% set glob.counter=glob.counter + 1 %}
+      {% endfor %}
+
+        </select>
+</div>
+
+
+
+<div class="card-boton">
+    <center>
+      <button class=" btn btn-sm btn-primary form-boton" type="submit">Buscar</button>
+      </center>
+    </div>
+
+</form>
+
+
+
+<div class="card text-inventario ml-4 mt-4" id="dato"> <center><h1>Lista de Costo de {{producto}}</h1></center>
+  <table class="table table-striped table-hover table-bordered bg-white table-sm" class="wrapper-table" class="jumbotron">
+      <thead>
+      
+        <tr class="table-warning ">
+  
+          <td style="text-align: center;"><h5 >PRODUCTO</h5></td>  
+          <td  style="text-align: center;" valign="middle"><h5 >PROVEEDOR</h5></td> 
+          <td style="text-align: center;"><h5 >PRECIO</h5></td>                         
+          
+         
+         <!-- <td style="text-align: center;">Operacion</td>-->
+        </tr>
+      </thead>
+      {% set i=namespace() %}
+       {% set i.counter=0 %}
+      {% for table in mp_final %}
+      <tr class="borde-negro">
+          
+  
+             
+              <td style="text-align: center;" >{{producto}}</font></td>
+              <td style="text-align: center;" >{{n_final[i.counter]}}</font></td>
+              <td style="text-align: center;" >{{table}}</font></td>
+              
+             
+          
+              {% set i.counter=i.counter + 1 %}
+          
+      </tr>
+      {% endfor %}
+      
+  
+  </table>
+  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+{% endblock%}

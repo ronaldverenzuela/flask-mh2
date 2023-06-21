@@ -1,0 +1,99 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+   <!-- Tabla formulas-->
+   {% set i=namespace() %}
+      {% set i.counter=0 %}
+      {% set j=namespace() %}
+      {% set j.counter=0 %}
+      {% set k=namespace() %}
+      {% set k.counter=1 %}
+{% for cont_rango in validacion %}
+{% set k.counter=k.counter +1 %}
+
+{% endfor %}
+
+{% for q in range(k.counter) %}
+
+{% if validacion[i.counter]==1 %}
+
+{% set j.counter=0 %}
+
+<div class="container"> 
+    <a href="javascript:imprSlec('dato')"><i class="fas fa-solid fa-print"></i>imprimir</a>  
+<div class="col">
+    
+    <div class="col-xl-3 " id="dato">
+        
+                        
+                            <table class="table table-striped table-hover table-bordered bg-white table-sm " class="wrapper-table" class="jumbotron" style="white-space: nowrap"  >
+                                <thead><center>
+                                    <div class="text-xs text-uppercase mt-4" style="white-space: nowrap !important">
+                                        {{alimento[i.counter]}} </div>
+                                  <tr class="table-primary ">
+                                
+                                                          
+                                    <td  style="text-align: center;" valign="middle"><h5 >PRODUCTO</h5></td>  
+                                    <td  style="text-align: center;" valign="middle"><h5 >CANTIDAD Kg</h5></td>  
+                                    <td  style="text-align: center;" valign="middle"><h5 >COSTO</h5></td>  
+                                    <td  style="text-align: center;" valign="middle"><h5 >TOTAL = {{suma_costo[i.counter]}} </h5></td>
+                                    <td  style="text-align: center;" valign="middle"><h5 >POR Kg = {{costo_kg[i.counter]}} </h5></td> 
+                                    <td  style="text-align: center;" valign="middle"><h5 >POR SACO = {{costo_saco[i.counter]}} </h5></td>  
+                                   
+                                   <!-- <td style="text-align: center;">Operacion</td>-->
+                                  </tr>
+                                </thead>
+                {% for materia in range(longitud_matriz) %}
+
+                {% if materia_prima[j.counter,i.counter] == "" %}
+
+                {% else %}
+
+                
+                                        
+                                           <tr> 
+                                            <td> <h6>{{materia_prima[j.counter,i.counter] }}   </h6></td>
+                                            
+                                        <td><center><h6>  {{ kilos[j.counter,i.counter]}} Kg</h6></center></td>
+                                    
+                                        <td><h6>  {{ costo_final[j.counter,i.counter]}} $</h6></td>
+                                </tr>
+                                
+                                
+                                    {% endif %}
+                                    {% set j.counter=j.counter + 1 %}
+                                {% endfor %}
+                            </center>
+                                </div>
+                               
+                            
+                            </div>
+                        </div>
+                    </div>
+
+{% endif %}
+{% set i.counter=i.counter + 1 %}
+
+
+
+{% endfor %}
+
+
+
+
+   
+<script lenguage="javascript">
+    function imprSlec(nombre){
+        var ficha=document.getElementById(nombre)
+        var ventimp=window.open(' ','popimpr')
+        ventimp.document.write(ficha.innerHTML)
+        ventimp.document.close()
+        ventimp.print()
+        ventimp.close()
+    }
+
+</script>
+
+
+{% endblock%}

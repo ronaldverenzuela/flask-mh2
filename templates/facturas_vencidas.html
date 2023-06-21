@@ -1,6 +1,180 @@
 {% extends "layout.html" %}
 
 {% block content %}
+  <div class="row">
+    
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">MONTO POR COBRAR
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{dato2}} $</div>
+                            </div>
+                            <div class="col">
+                                <div class="progress progress-sm mr-2">
+                                  {% if barra_cobrar == 0  %}
+                                    <div class="progress-bar bg-danger" role="progressbar"
+                                        style="width: 0%" aria-valuenow="20" aria-valuemin="0"
+                                        aria-valuemax="100">{{porcentaje_por_cobrar}} %</div>
+                                  {% elif barra_cobrar == 10  %}
+                                  <div class="progress-bar bg-danger" role="progressbar"
+                                        style="width: 10%" aria-valuenow="20" aria-valuemin="0"
+                                        aria-valuemax="100">{{porcentaje_por_cobrar}} %</div>
+                                  {% elif barra_cobrar == 20   %}
+                                  <div class="progress-bar bg-danger" role="progressbar"
+                                        style="width: 20%" aria-valuenow="20" aria-valuemin="0"
+                                        aria-valuemax="100">{{porcentaje_por_cobrar}} %</div>
+                                        {% elif barra_cobrar == 30  %}
+                                        <div class="progress-bar bg-danger" role="progressbar"
+                                              style="width: 30%" aria-valuenow="20" aria-valuemin="0"
+                                              aria-valuemax="100">{{porcentaje_por_cobrar}} %</div>
+                                              {% elif barra_cobrar == 40  %}
+                                              <div class="progress-bar bg-danger" role="progressbar"
+                                                    style="width: 40%" aria-valuenow="20" aria-valuemin="0"
+                                                    aria-valuemax="100">{{porcentaje_por_cobrar}} %</div>
+                                                    {% elif barra_cobrar == 50  %}
+                                                    <div class="progress-bar bg-danger" role="progressbar"
+                                                          style="width: 50%" aria-valuenow="20" aria-valuemin="0"
+                                                          aria-valuemax="100">{{porcentaje_por_cobrar}} %</div>
+                                                          {% elif barra_cobrar == 60  %}
+                                                          <div class="progress-bar bg-danger" role="progressbar"
+                                                                style="width: 60%" aria-valuenow="20" aria-valuemin="0"
+                                                                aria-valuemax="100">{{porcentaje_por_cobrar}} %</div>
+                                                                {% elif barra_cobrar == 70  %}
+                                                                <div class="progress-bar bg-danger" role="progressbar"
+                                                                      style="width: 70%" aria-valuenow="20" aria-valuemin="0"
+                                                                      aria-valuemax="100">{{porcentaje_por_cobrar}} %</div>
+                                                                      {% elif barra_cobrar == 80  %}
+                                                                      <div class="progress-bar bg-danger" role="progressbar"
+                                                                            style="width: 80%" aria-valuenow="20" aria-valuemin="0"
+                                                                            aria-valuemax="100">{{porcentaje_por_cobrar}} %</div>
+                                                                            {% elif barra_cobrar == 90  %}
+                                                                            <div class="progress-bar bg-danger" role="progressbar"
+                                                                                  style="width: 90%" aria-valuenow="20" aria-valuemin="0"
+                                                                                  aria-valuemax="100"> {{porcentaje_por_cobrar}} %</div>
+                                                                                  {% elif barra_cobrar == 95  %}
+                                                                                  <div class="progress-bar bg-danger" role="progressbar"
+                                                                                        style="width: 95%" aria-valuenow="20" aria-valuemin="0"
+                                                                                        aria-valuemax="100">{{porcentaje_por_cobrar}} %</div>
+                                                                                        {% elif barra_cobrar == 100  %}
+                                                                                  <div class="progress-bar bg-danger" role="progressbar"
+                                                                                        style="width: 100%" aria-valuenow="20" aria-valuemin="0"
+                                                                                        aria-valuemax="100">{{porcentaje_por_cobrar}} %</div>
+                                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      
+        <!-- MONTO POR COBRAR -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">MONTO COBRADO
+                    </div>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{abono_vencido}} $</div>
+                        </div>
+                        <div class="col">
+                            <div class="progress progress-sm mr-2">
+                              {% if barra_abono == 0  %}
+                                <div class="progress-bar bg-success" role="progressbar"
+                                    style="width: 0%" aria-valuenow="20" aria-valuemin="0"
+                                    aria-valuemax="100">{{porcentaje_abono}} %</div>
+                              {% elif barra_abono == 10  %}
+                              <div class="progress-bar bg-success" role="progressbar"
+                                    style="width: 10%" aria-valuenow="20" aria-valuemin="0"
+                                    aria-valuemax="100">{{porcentaje_abono}} %</div>
+                              {% elif barra_abono == 20   %}
+                              <div class="progress-bar bg-success" role="progressbar"
+                                    style="width: 20%" aria-valuenow="20" aria-valuemin="0"
+                                    aria-valuemax="100">{{porcentaje_abono}} %</div>
+                                    {% elif barra_abono == 30  %}
+                                    <div class="progress-bar bg-success" role="progressbar"
+                                          style="width: 30%" aria-valuenow="20" aria-valuemin="0"
+                                          aria-valuemax="100">{{porcentaje_abono}} %</div>
+                                          {% elif barra_abono == 40  %}
+                                          <div class="progress-bar bg-success" role="progressbar"
+                                                style="width: 40%" aria-valuenow="20" aria-valuemin="0"
+                                                aria-valuemax="100">{{porcentaje_abono}} %</div>
+                                                {% elif barra_abono == 50  %}
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                      style="width: 50%" aria-valuenow="20" aria-valuemin="0"
+                                                      aria-valuemax="100">{{porcentaje_abono}} %</div>
+                                                      {% elif barra_abono == 60  %}
+                                                      <div class="progress-bar bg-success" role="progressbar"
+                                                            style="width: 60%" aria-valuenow="20" aria-valuemin="0"
+                                                            aria-valuemax="100">{{porcentaje_abono}} %</div>
+                                                            {% elif barra_abono == 70  %}
+                                                            <div class="progress-bar bg-success" role="progressbar"
+                                                                  style="width: 70%" aria-valuenow="20" aria-valuemin="0"
+                                                                  aria-valuemax="100">{{porcentaje_abono}} %</div>
+                                                                  {% elif barra_abono == 80  %}
+                                                                  <div class="progress-bar bg-success" role="progressbar"
+                                                                        style="width: 80%" aria-valuenow="20" aria-valuemin="0"
+                                                                        aria-valuemax="100">{{porcentaje_abono}} %</div>
+                                                                        {% elif barra_abono == 90  %}
+                                                                        <div class="progress-bar bg-success" role="progressbar"
+                                                                              style="width: 90%" aria-valuenow="20" aria-valuemin="0"
+                                                                              aria-valuemax="100"> {{porcentaje_abono}} %</div>
+                                                                              {% elif barra_abono == 95  %}
+                                                                              <div class="progress-bar bg-success" role="progressbar"
+                                                                                    style="width: 95%" aria-valuenow="20" aria-valuemin="0"
+                                                                                    aria-valuemax="100">{{porcentaje_abono}} %</div>
+                                                                                    {% elif barra_abono == 100  %}
+                                                                              <div class="progress-bar bg-success" role="progressbar"
+                                                                                    style="width: 100%" aria-valuenow="20" aria-valuemin="0"
+                                                                                    aria-valuemax="100">{{porcentaje_abono}} %</div>
+                                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <i class="fa-solid fa-circle-dollar-to-slot fa-2x text-light-300"></i>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIN DE MONTO POR COBRAR -->
+
+ <!-- MONTO COBRADO SIN PROGRESSBAR -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Cantidad de Facturas</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{n_fact_venc}} Facturas</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>  
+    
+    
+    </div>
 <div class="row-md-12 offset-md-0">
     
 
@@ -9,10 +183,32 @@
     
             <div class="col-md-12">
 
+
+
+
+                <!-- NUMERO DE FACTURAS VENCIDAS 
                 <center>
                     <form>
                         
-                        <table class="table table-striped table-hover table-bordered bg-white table-sm"  class="wrapper-table" class="jumbotron">
+                        <table class="table table-striped table-hover table-bordered bg-white table-sm fondo-gradient"  class="wrapper-table" class="jumbotron">
+                           
+                            <thead>
+                            
+                                <tr>
+                                  <td>
+                                      <center>
+                                  <h1 class="display-4" style="color:#6b06ee">   FACTURAS VENCIDAS   </h1>
+                                </center> 
+                              </td>
+                                
+                              </tr>
+                            </thead>
+                            
+                            
+                            
+                           
+                           
+                           
                             <thead>
                             
                               <tr>
@@ -21,12 +217,13 @@
                                 <h1 class="display-4" style="color:#ff0037">   Total a Cobrar = {{dato2}}   </h1>
                               </center> 
                             </td>
-                               <!-- <td style="text-align: center;">Operacion</td>-->
+                               
                               </tr>
                             </thead>
                    
                 </form>
-                    </center>
+                    </center> -->
+                    <!-- <td style="text-align: center;">Operacion</td>-->
                  <table class="table table-striped table-hover table-bordered bg-white table-sm" class="wrapper-table" class="jumbotron">
                     <thead>
                     
@@ -34,25 +231,29 @@
 
                         <td style="text-align: center;"><h5 >Nº FACTURA</h5></td>                        
                         <td  style="text-align: center;" valign="middle"><h5 >CLIENTE</h5></td> 
-                        <td style="text-align: center;"><h5 >FECHA_VENC</h5></td>                       
+                        <td style="text-align: center;"><h5 >FECHA_VENC</h5></td>   
+                        <td style="text-align: center;"><h5 >DIAS VENC</h5></td>                    
                         <td style="text-align: center;"><h5 >MONTO</h5></td>
                         <td style="text-align: center;"><h5 >ABONO</h5></td>
                         <td style="text-align: center;"><h5 >DEBE</h5></td>
                        <!-- <td style="text-align: center;">Operacion</td>-->
                       </tr>
                     </thead>
-                    
+                    {% set i = namespace(cnt=-1)%}
                     {% for table in tabla1 %}
                     <tr>
-
+                        {% set i.cnt = i.cnt + 1 %}
                         <td style="text-align: center;">{{table.1}}</td>
                         <td style="text-align: center;">{{table.2}}</td>
                         <td style="text-align: center;">{{table.5}}</td>
+                        
+                        <td style="text-align: center;">{{dia[i.cnt]}}</td>
+                        
                         <td style="text-align: right;">{{table.6}}</td>
                         <td style="text-align: right;">{{table.8}}</td>
                         <td style="text-align: right;">{{table.9}}</td>
                         
-                        
+                     
                             <div class="row-md-7">    
                        <!-- <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>-->
                       <!-- <td> </td>-->

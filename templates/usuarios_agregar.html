@@ -1,0 +1,99 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+
+{% with messages = get_flashed_messages(category_filter=["agregar_usuarios"]) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+    {% endfor %}
+    </ul>
+  {% endif %}
+  
+{% endwith %}
+
+<!--<div class="jumbotron"> -->
+  
+    <div class="card card-body mp-4 ml-4 form-gradient" style="width: 600px !important;">
+      <form class="form-signin f" action="/agregar_usuarios_add" method="POST">
+       
+        <div class="form-group">   
+          <center>            
+            <h3 style="color:#171817"> Crear Usuario</h3>
+          <!--<h3 style="color:#226918"> Ingresar Nueva Factura</h3>-->
+        </center>
+        </div>
+        <br>
+        <div class="form-group username">         
+           <h4 style="color: white !important;">Usuario</h4>
+          <input type="text" class="form-control" id="username" name="username" autocomplete="off" placeholder="usuario">
+                   
+                
+        </div>
+        <hr style="background:white">
+        <br>
+        
+        <div class="form-group password">
+          <h4 style="color: white !important;">Nombre Completo</h4>
+          <input type="text" class="form-control" id="nombre" name="nombre" autocomplete="off" placeholder="nombre">
+        </div>
+        <hr style="background:white">
+        <br>
+        
+        <div class="form-group password">
+          <h4 style="color: white !important;">Password</h4>
+          <input type="password" class="form-control" id="password" name="password" autocomplete="off" placeholder="clave">
+        </div>
+        <hr style="background:white">
+        <br>
+        <div class="form-group password">
+            <h4 style="color: white !important;">Confirmar Password</h4>
+            <input type="password" class="form-control" id="password2" name="password2" autocomplete="off" placeholder="confirmar clave">
+          </div>
+          <hr style="background:white">
+        
+<br>
+
+
+          <h4 style="color: rgb(255, 254, 254) !important;">Propiedad</h4>
+            
+          <div class="input-group "class="form-group"  >
+            
+          
+            <select type="text" class="custom-select list-producto" id="tipo" name="tipo" >
+        
+    
+          {% set glob=namespace() %}
+          {% set glob.counter=0 %}
+          {% for table in tipo_usuario %}
+    
+          <option value={{glob.counter}}>{{table}}</option>
+        
+          {% set glob.counter=glob.counter + 1 %}
+          {% endfor %}
+    
+            </select>
+    </div>
+    <hr style="background:white">
+       <br>
+          <div class="form-group">
+          <center>
+            <button class=" btn btn-sm btn-primary form-boton" type="submit">Ingresar</button>
+          </center>
+          </div>
+        
+          </form>
+    </div>
+  
+<!--</div> -->
+
+
+{% endblock%}

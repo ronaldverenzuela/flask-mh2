@@ -1,8 +1,9 @@
-{% extends "layout.html" %}
+{% extends "prototipo.html" %}
 
 {% block content %}
 
-{% with messages = get_flashed_messages(category_filter=["home"]) %}
+
+{% with messages = get_flashed_messages(category_filter=["crear_materiaprima"]) %}
   {% if messages %}
     <ul class=flashes>
     {% for message in messages %}
@@ -20,27 +21,35 @@
 {% endwith %}
 
 <!--<div class="jumbotron"> -->
-  <div class="col-md-4 mt-4 offset-md-4">
-    <div class="card card-body mp-4 form-gradient">
-      <form class="form-signin f" action="/" method="POST">
+  
+    <div class="card card-body mp-4 ml-4 " style="width: 600px !important; background: #5c5e5c;">
+      <form class="form-signin f" action="/crear_materiaprima_add" method="POST">
        
         <div class="form-group">   
           <center>            
-            <h3 style="color:#171817"> Ingersar</h3>
+            <h3 style="color:#171817"> Crear MateriaPrima</h3>
           <!--<h3 style="color:#226918"> Ingresar Nueva Factura</h3>-->
         </center>
         </div>
+        <br>
         <div class="form-group username">         
-           
-          <input type="text" class="form-control" id="username" name="username" autocomplete="off" placeholder="usuario">
+           <h4 style="color: white !important;">Nombre del Producto</h4>
+          <input type="text" class="form-control" id="nombre" name="nombre" >
                    
                 
         </div>
+        <hr style="background:white">
+        <br>
+        
         <div class="form-group password">
-          
-          <input type="password" class="form-control" id="password" name="password" autocomplete="off" placeholder="clave">
+          <h4 style="color: white !important;">Alarma  (Kg Minimo que debe tener en Inventario) </h4>
+          <input type="text" class="form-control" id="alarma" name="alarma" >
         </div>
-       
+        <hr style="background:white">
+        <br>
+        
+        
+    
           <div class="form-group">
           <center>
             <button class=" btn btn-sm btn-primary form-boton" type="submit">Ingresar</button>
@@ -49,7 +58,7 @@
         
           </form>
     </div>
-  </div>
+  
 <!--</div> -->
 
 

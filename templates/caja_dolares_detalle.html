@@ -1,0 +1,171 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+<button class="btn btn-primary" onclick="printDiv('caja','caja')"><i class="fas fa-solid fa-print"></i>Imprimir</button>
+
+<div id="caja">
+
+<center>
+    <h1>RELACION DE CAJA </h1>
+</center>
+    <div class="row ">
+        
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-warning shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                              MONTO TOTAL INGRESO</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">{{ingresos}} $</div>
+                      </div>
+                      <div class="col-auto">
+                         
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-danger shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                              MONTO TOTAL EGRESOS</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">{{egresos}} $</div>
+                      </div>
+                      <div class="col-auto">
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                              MONTO TOTAL SALDO</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">{{saldo}} $</div>
+                      </div>
+                      <div class="col-auto">
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    
+    
+    
+    
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                              DETALLE</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800 mt-4"><center>
+                            <a href="/caja/estado"  class="btn btn-sm btn-success "> Ocultar Detalle</a>
+                        </center></div>
+                      </div>
+                      <div class="col-auto">
+                        <div></div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+     <table class="table table-striped table-hover table-bordered bg-white table-sm " class="wrapper-table" class="jumbotron">
+                        <thead>
+                        
+                          <tr class="table-primary ">
+    
+                            <td  style="text-align: center;" valign="middle"><h5 >FECHA</h5></td>  
+                            <td  style="text-align: center;" valign="middle"><h5 >DETALLE</h5></td>
+                             
+                            <td  style="text-align: center;" valign="middle"><h5 >INGRESO</h5></td> 
+                            <td  style="text-align: center;" valign="middle"><h5 >EGRESO</h5></td> 
+                            <td  style="text-align: center;" valign="middle"><h5 >SALDO</h5></td>  
+                           <!-- <td style="text-align: center;">Operacion</td>-->
+                          </tr>
+                        </thead>
+                        
+                        {% for table in caja %}
+                        <tr>
+                           
+    
+                                <td  style="text-align: center;" >{{table.7}}</font></td>
+                                <td  style="text-align: center;" >{{table.2}}</font></td>
+                                <td  style="text-align: center;" >{{table.3}}</font></td>
+                                <td  style="text-align: center;" >{{table.4}}</font></td>
+                                <td  style="text-align: center;" >{{table.5}}</font></td>
+                                
+                                  
+                            
+                                <div class="row-md-7">    
+                           <!-- <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>-->
+                          <!-- <td> </td>
+                            <td>
+                                <center>
+                                <a href="/bancos/detalle/{{table.4}}"  class="btn btn-sm btn-success ">Detalle</a>
+                            </center>
+                        </td>-->
+                           <!--  <td>
+                                <center>
+                                <a href="/delete/{{table.0}}" class="btn btn-sm btn-danger btn-delete">borrar</a>
+                                </center>
+                            </td> -->
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+    
+                    </table>
+
+  
+</div>
+
+<script>
+    
+    
+    var doc = new jsPDF();
+
+function saveDiv(divId, title) {
+ doc.fromHTML(`<html><head><title>${title}</title></head><body>` + document.getElementById(divId).innerHTML + `</body></html>`);
+ doc.save('div.pdf');
+}
+
+function printDiv(divId,
+  title) {
+
+  let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
+
+  mywindow.document.write(`<html><head><title>${title}</title>`);
+  mywindow.document.write('</head><body >'+`<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">`);
+ //mywindow.document.write(`<link rel="stylesheet" type="text/css" href="../static/css/main.css" media="all" media="print">`);
+  mywindow.document.write(document.getElementById(divId).innerHTML);
+  mywindow.document.write('</body></html>');
+
+  mywindow.document.close(); // necessary for IE >= 10
+  mywindow.focus(); // necessary for IE >= 10*/
+
+  mywindow.print();
+  mywindow.close();
+
+  return true;
+} 
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+{% endblock%}

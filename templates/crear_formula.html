@@ -1,0 +1,183 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+ <!--
+  -->
+  
+ <!--tabla productos elegidos  -->
+ <!--
+ <div class="tabla-add-int">
+    
+  <table class="table table-striped table-hover table-bordered bg-white table-sm mt-4 ">
+      <thead>
+      
+        <tr class="table-danger "data-trabajo="0">
+  
+                                
+          <td  style="text-align: center;" valign="middle"><h5 >PRODUCTO</h5></td>  
+          
+         
+        
+        </tr>
+      </thead>
+      {% set i_suma=namespace() %}
+            {% set i_suma.counter=0 %}
+      {% for tab in array_consumo %}
+      <tr class="table1" data-id={{i_suma.counter}} id="tablax" name={{tab}} >
+          
+  
+              <td style="text-align: center;" >{{tab}}</font></td>
+              
+              
+          
+              <div class="row-md-7">    
+       
+      
+      </tr>
+      {% set i_suma.counter=i_suma.counter + 1 %}
+      {% endfor %}
+      
+  
+  </table>
+</div>
+-->
+{% with messages = get_flashed_messages(category_filter=["puntos"]) %}
+  {% if messages %}
+  <ul class=flashes>
+  {% for message in messages %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>{{ message }}</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+   
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% endwith %}
+{% with messages = get_flashed_messages(category_filter=["puntos2"]) %}
+{% if messages %}
+  <ul class=flashes>
+  {% for message in messages %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>{{ message }}</strong> 
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+   
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% endwith %}
+
+  <!--tabla productos  -->
+  <form class="form-signin form-consumo-interno" action="/crear_formula" method="POST">
+    <div class="form-group">
+    <div class="tabla-add-int" style="white-space: nowrap !important;">
+      <center>
+      <h1 style="color:#1dc4e7">SELECCIONE EL TIPO DE ALIMENTO A FORMULAR</h1>
+    </center>
+      <select type="text" class="custom-select list-proveedor form-group" style="font-weight: bold" style="white-space: nowrap !important;" id="alimento" name="alimento" >
+      </div> 
+
+        {% set glob=namespace() %}
+        {% set glob.counter=0 %}
+        {% for table in array_tipo_alimento %}
+
+        <option value={{glob.counter}}>{{table}}</option>
+      
+        {% set glob.counter=glob.counter + 1 %}
+        {% endfor %}
+
+          </select>
+
+        <table class="table table-striped table-hover table-bordered bg-white table-sm mt-4  form-group">
+            <thead>
+            
+              <tr class="table-success form-group"data-trabajo="0">
+        
+                                      
+                <td  style="text-align: center;" valign="middle"><h5 >PRODUCTO</h5></td>  
+                <td>
+                  <center>
+                    <button class=" btn btn-sm btn-primary" value={{i_suma.counter}} name="productoadd" type="submit">Agregar</button>
+                </center>
+                
+            </td>
+                
+               
+               <!-- <td style="text-align: center;">Operacion</td>-->
+              </tr>
+            </thead>
+            {% set i_suma=namespace() %}
+                  {% set i_suma.counter=0 %}
+            {% for tab in productos_inv %}
+            <tr class="table1 form-group" data-id={{i_suma.counter}} id="tablax" value={{i_suma.counter}} name="a" style="white-space:nowrap !important;">
+                
+        
+                    <td style="text-align: center;" >{{tab}}</font></td>
+                    
+                    
+                
+                    <div class="row-md-7">    
+                      <td>
+                        <center>
+                          <input type="text" class="form-control" id="textocantidad" name="a{{i_suma.counter}}" >  
+                      </center>
+                      
+                  </td>
+               <!--  <td>
+                  <center>
+                    <button class=" btn btn-sm btn-primary" value={{i_suma.counter}} name="productoadd" type="submit">Agregar</button>
+                </center>
+                
+            </td>-->
+                <!--  <td>
+                    <center>
+                    <a href="/delete/{{tab.0}}" class="btn btn-sm btn-danger btn-delete">borrar</a>
+                    </center>
+                </td>
+                    </div>
+                </td>-->
+            </tr>
+            {% set i_suma.counter=i_suma.counter + 1 %}
+            {% endfor %}
+            
+        
+        </table>
+       
+    </div>
+  </div>
+  
+  </form>
+    
+ 
+
+     
+
+
+<script>
+  function filtro()
+{
+var tecla = event.key;
+if (["."].includes(tecla))
+event.preventDefault()
+}
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+
+
+
+
+
+
+
+{% endblock%}

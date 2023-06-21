@@ -1,0 +1,139 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+<center>
+<h1 style="color:blue">Calcular Gastos Operativos</h1>
+</center>
+<div class="row ml-4 pl-4 pb-4 mt-4">
+    
+
+
+<div class="col-xl-3 col-md-6 mb-4" >
+    <div class="card border-left-success shadow h-100 py-2 ">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        Total Gastos</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{gastos_total}} $</div>
+                </div>               
+                <div class="col-auto">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xl-3 col-md-6 mb-4 " >
+    <div class="card border-left-success shadow h-100 py-2 ">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        Costos Operativos</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{costo}} $</div>
+                </div>               
+                <div class="col-auto">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-xl-3 col-md-6 mb-4 " >
+    <div class="card border-left-success shadow h-100 py-2 ">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        Kilos a Procesar</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{peso}} Kg</div>
+                </div>               
+                <div class="col-auto">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-3 col-md-6 mb-4 " >
+    <div class="card border-left-success shadow h-100 py-2 ">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                       Guardar</div>
+                       <center>
+                        <a href="/aceptar_costos_operativos/{{costo}}/{{fecha1}}/{{fecha2}}/{{peso}}/{{gastos_total}} "  class="btn btn-sm btn-success ">Si</a>
+                    </center> 
+                    <center>
+                        <a href="#"  class="btn btn-sm btn-danger ">No</a>
+                    </center>             
+                <div class="col-auto">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+ <table class="table table-striped table-hover table-bordered bg-white table-sm ml-4" class="wrapper-table" class="jumbotron">
+                    <thead>
+                    
+                      <tr class="table-primary ">
+                        
+                        <td  style="text-align: center;" valign="middle"><h5 >FECHA</h5></td>
+                        <td  style="text-align: center;" valign="middle"><h5 >FACTURA</h5></td>  
+                        <td  style="text-align: center;" valign="middle"><h5 >NOMBRE</h5></td>  
+                        <td  style="text-align: center;" valign="middle"><h5 >DESCRIPCION</h5></td>                        
+                        <td  style="text-align: center;" valign="middle"><h5 >MONTO $</h5></td>  
+                        <td  style="text-align: center;" valign="middle"><h5 >COMENTARIO</h5></td>                         
+                        <td  style="text-align: center;" valign="middle"><h5 >OPCION</h5></td> 
+                         
+                       <!-- <td style="text-align: center;">Operacion</td>-->
+                      </tr>
+                    </thead>
+                    
+                    {% for table in gastos %}
+                    <tr>
+                       
+                            
+                       
+                            <td  style="text-align: center;" >{{table.7}}</font></td>
+                            <td  style="text-align: center;" >{{table.1}}</font></td>
+                            <td  style="text-align: center;" >{{table.8}}</font></td>
+                            <td  style="text-align: center;" >{{table.2}}</font></td>
+                            <td  style="text-align: center;" >{{table.4}}</font></td>
+                            {% if table.3 == '' %}
+                            <td  style="text-align: center;" ></font></td>
+                            <center> <td> <a href="/pre_particion_gastos_operativos/{{table.0}} "  class="btn btn-sm btn-danger ">Dividir</a></td></center>
+                        
+                            {% else %}
+                            <td  style="text-align: center;" > Cuota Nº{{table.3}}</font></td>
+                            
+
+                            {%endif%}
+
+
+
+
+                            
+                           
+                        
+                            <div class="row-md-7">    
+                      
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+
+                </table>
+
+
+{% endblock%}

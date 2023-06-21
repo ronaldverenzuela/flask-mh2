@@ -1,0 +1,90 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+
+
+<div class="row-md-12 offset-md-0">
+    
+
+    <div class="row ml-4 pl-4 pb-4 mt-4">
+
+
+        <div class="col-xl-3 col-md-6 mb-4 ">
+            <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                elija el tipo de pago</div>
+                            
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+      </div> 
+
+
+
+
+      
+      <div class="col-xl-3 col-md-6 mb-4 ">
+          <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                              EFECTIVO DOLARES</div>
+                          
+                      </div>
+                      <center>
+                        <a href="/pagar_factura_compras_materiaprima/dolares/{{factura}}"  class="btn btn-sm btn-success ">Pago en Dolares</a>
+                    </center>
+                  </div>
+              </div>
+          </div>
+    </div> 
+  <!-- 
+          <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-danger shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                    DOLARES CTA CUSTODIA</div>
+                               
+                            </div>
+                            <center>
+                                <a href="/pagar_factura_compras_materiaprima/dolares/custodia{{factura}}"  class="btn btn-sm btn-danger ">Pago Custodia</a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+          </div> -->
+  
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">BANCOS NACIONALES Bs
+                            </div>
+                            
+                            <center>
+                                <a href="/pagar_factura_compras_materiaprima/bolivares/{{factura}}"  class="btn btn-sm btn-primary ">Pago en Bolivares</a>
+                            </center>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div> 
+
+
+
+
+
+{% endblock%}

@@ -1,0 +1,48 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+<form class="form-signin f" action="/psql" method="POST">
+<div class="form-group">
+<input type="text" step="00.1" class="separadorDecimal" id="id1" name="id1" onkeyup="test(this)"  >
+</div>
+<div>
+<button type="submit" class=" btn btn-sm btn-primary">enviar</button>
+
+</div>
+</form>
+<script lenguage="javascript">
+
+function test(e) {
+e.value=e.value.replace(/\,/g, '.')
+
+
+miFormulario = document.querySelector('#id1');
+miFormulario.codigo.addEventListener('keypress', function (e){
+	if (!soloNumeros(event)){
+  	e.preventDefault();
+  }
+})
+
+//Solo permite introducir numeros.
+function soloNumeros(e){
+    var key = e.charCode;
+    console.log(key);
+    return key >= 48 && key <= 57;
+}
+}
+/*
+var separadorDecimal=document.querySelectorAll(".separadorDecimal");
+for(e of separadorDecimal)
+{
+    e.addEventListener("keyup",entrada,false);
+}
+ 
+function entrada(evt)
+{
+    var res=evt.target.value.replace(/\./g,",");
+    evt.path[0].value=res;
+} */
+</script>
+
+{% endblock%}

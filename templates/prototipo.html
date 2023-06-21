@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>MH 2018</title>
+    <!-- BOOTSTRAP 4 CDN   -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;700&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="shortcut icon" href="{{url_for ('static', filename = '/images/tecno.png')}}">
+</head>
+
+<body>
+ <header>  
+<div class="cabecera">
+    <div >
+        <h4> usuario :  <span> {{current_user.fullname}} </span> </h4>
+       
+    </div>
+   
+    <div >
+      
+        <a href="{{ url_for('salir') }}" class="boton-log">cerrar sesion</a>
+        {% if current_user.permiso=='0'%}
+       
+        <a href="{{ url_for('permisos') }}" class="boton-log">permiso</a>
+
+        {% else %}
+
+          {% if current_user.nivel=='admin'  %}
+          <a href="#" class="boton-log2">Ver Usuarios</a>
+
+          {% else %}
+          <a href="{{ url_for('desactivar_permisos') }}" class="boton-log2">desactivar permiso</a>
+          {%endif%}
+        
+        {%endif%}
+
+
+        {% if current_user.nivel=='admin'%}
+       
+              {% if current_user.solicitud=='1'%}
+
+              <a href="{{ url_for('lista_permisos') }}" class="boton-log2">tienes solicitud</a>
+
+
+              {%endif%}
+        
+        
+        {%endif%}
+
+
+    </div>
+</div>
+</header> 
+
+<div class="lateral">
+    <center>
+        <img class="imagen-lateral mb-12"  src = "{{url_for ('static', filename = '/images/usuario.png')}}"  />
+    </center>
+  
+
+    <li class="nav-item dropdown" >
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-boxes-stacked"></i>Materia Prima
+      </a>
+      <div class="dropdown-menu" style="color: black;" style="background: blueviolet !important ; ">
+        <a href="{{ url_for('planta_aba') }}"><i class="fas fa-boxes-stacked"></i>Inventario</a>
+        <hr style="background:white">
+    <a href="{{ url_for('agregar_inventario') }}"><i class="fas fa-cart-plus"></i>Agregar Inventario</a>    
+    <hr style="background:white">
+    <a href="{{ url_for('ventas_materiaprima') }}"><i class="fas fa-solid fa-right-from-bracket"></i>Venta Materia Prima</a>
+    <hr style="background:white">
+    <a href="{{ url_for('valor_materiaprima') }}"><i class="fas fa-solid fa-right-from-bracket"></i>Valor Materia Prima</a>
+    <hr style="background:white">
+    <a href="{{ url_for('crear_materiaprima') }}"><i class="fas fa-solid fa-right-from-bracket"></i>Crear Materiaprima</a>
+    <hr style="background:white">
+    <a href="{{ url_for('calcular_costos_operativos') }}"><i class="fas fa-solid fa-right-from-bracket"></i>Calc Costo OP</a>
+      </div>
+    </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-sharp fa-regular fa-download"></i>Alimento Aba
+      </a>
+      <div class="dropdown-menu" style="color: black;">
+        <a href="{{ url_for('inventario_alimento') }}"><i class="fas fa-sharp fa-regular fa-download"></i>Inv Alimento</a>
+        <hr style="background:white">
+        <a href="{{ url_for('salida_alimento') }}"><i class="fas fa-sharp fa-regular fa-download"></i>Despacho Alimento</a>
+      </div>
+    </li>
+
+
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-sharp fa-regular fa-download"></i>Gastos
+      </a>
+      <div class="dropdown-menu" style="color: black;">
+        <a href="{{ url_for('mostrar_gastos') }}"><i class="fas fa-sharp fa-regular fa-download"></i>Mostrar Gastos</a>
+        <hr style="background:white">
+        <a href="{{ url_for('add_gastos') }}"><i class="fas fa-sharp fa-regular fa-download"></i>Agregar Gastos</a>
+    </div>
+    </li>
+
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-sharp fa-regular fa-download"></i>Por Cobrar
+      </a>
+      <div class="dropdown-menu" style="color: black;">
+        <a href="{{ url_for('facturas_por_cobrar') }}"><i class="fas fa-sharp fa-regular fa-download"></i>Fact por Cobrar</a>
+    
+    </div>
+    </li>
+
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-sharp fa-regular fa-download"></i>Por Pagar
+      </a>
+      <div class="dropdown-menu" style="color: black;">
+        <a href="{{ url_for('facturas_por_pagar') }}"><i class="fas fa-sharp fa-regular fa-download"></i>Fact por Pagar</a>
+        <hr style="background:white">
+        <a href="{{ url_for('cuentas_por_pagar') }}"><i class="fas fa-sharp fa-regular fa-download"></i>Cuentas por Pagar</a>
+    </div>
+    </li>
+
+    {% if current_user.permiso=='1'%}
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-sharp fa-regular fa-download"></i>Produccion
+      </a>
+      <div class="dropdown-menu" style="color: black;">
+        <a href="{{ url_for('generar_produccion') }}"><i class="fas fa-sharp fa-regular fa-download"></i>Ordenar Produccion</a>
+        <hr style="background:white">
+        <a href="{{ url_for('ordenes_produccion') }}"><i class="fas fa-sharp fa-regular fa-download"></i>Mostrar Produccion</a>
+    </div>
+    </li>
+    {%endif%}
+    {% if current_user.permiso=='1'%}
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-duotone fa-money-check-dollar"></i>Bancos
+      </a>
+      <div class="dropdown-menu" style="color: black;">
+        <a href="{{ url_for('estado_cuentas_bancos') }}"><i class="fas fa-duotone fa-money-check-dollar"></i>Bancos</a>
+        <hr style="background:white">
+        <a href="{{ url_for('caja_estado') }}"><i class="fas fa-duotone fa-money-check-dollar"></i>CAJA</a>
+    </div>
+    </li>
+    {%endif%}
+
+    {% if current_user.permiso=='1'%}
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-duotone fa-money-check-dollar"></i>Formulas
+      </a>
+      <div class="dropdown-menu" style="color: black;">
+        <a href="{{ url_for('crear_formula') }}"><i class="fas fa-duotone fa-money-check-dollar"></i>Crear Formula</a>
+        <hr style="background:white">
+        <a href="{{ url_for('mostrar_formulas') }}"><i class="fas fa-duotone fa-money-check-dollar"></i>Mostrar Formulas</a>
+    
+    
+    </div>
+    </li>
+    {%endif%}
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-duotone fa-money-check-dollar"></i>Calcular
+      </a>
+      <div class="dropdown-menu" style="color: black;">
+        <a href="{{ url_for('utilidad') }}"><i class="fas fa-duotone fa-money-check-dollar"></i>Utilidad</a>
+    
+    
+    
+    </div>
+    </li>
+
+    {% if current_user.permiso=='1'%}
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-duotone fa-clipboard-list"></i>Clientes
+      </a>
+      <div class="dropdown-menu" style="color: black;">
+        <a href="{{ url_for('clientes_internos') }}"><i class="fas fa-duotone fa-clipboard-list"></i>agregar Interno</a>
+        <hr style="background:white">
+        <a href="{{ url_for('clientes_externos') }}"><i class="fas fa-duotone fa-clipboard-list"></i>agregar Externo</a>
+        
+       
+        
+    </div>
+
+    </li>
+    {%endif%}
+    
+
+{% if current_user.permiso=='1'%}
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-duotone fa-clipboard-list"></i>Proveedores
+      </a>
+      <div class="dropdown-menu" style="color: black;">
+        <a href="{{ url_for('mostrar_proveedores') }}"><i class="fas fa-duotone fa-clipboard-list"></i>Proveedores</a>
+        <hr style="background:white">
+        <a href="{{ url_for('proveedores_agregar') }}"><i class="fas fa-duotone fa-clipboard-list"></i>Agregar Proveedores</a>
+        <hr style="background:white">
+        <a href="{{ url_for('prueba') }}"><i class="fas fa-duotone fa-clipboard-list"></i>Precios</a>
+       
+        
+    </div>
+
+    </li>
+    {%endif%}
+
+
+
+    {% if current_user.permiso=='1'%}
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-duotone fa-clipboard-list"></i>Usuarios
+      </a>
+      <div class="dropdown-menu" style="color: black;">
+        <a href="{{ url_for('agregar_usuarios') }}"><i class="fas fa-duotone fa-clipboard-list"></i>Agregar Usuarios</a>
+        <hr style="background:white">
+       
+        
+       
+        
+    </div>
+
+    </li>
+    {%endif%}
+
+
+
+
+</div>
+
+
+<div class="cuerpo">
+    {% block content %}
+      {% endblock%}
+</div>
+
+
+    <!-- cdn y js  -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <script src="{{url_for('static', filename='js/main.js')}}"></script>
+  <script src="{{url_for('static', filename='js/sure_delete.js')}}"></script>
+
+</body>
+</html>

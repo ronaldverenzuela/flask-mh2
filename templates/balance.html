@@ -1,0 +1,118 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+<center>
+<h1 style="color:blue">Balance</h1>
+</center>
+<br>
+<table class="default ml-4">
+
+    <tr colspan="3">
+        <th colspan="3" style="text-align: center;"><h2>Activos</h2> </th>  
+    </tr>
+  
+    <tr>  
+      <td>Valor MateriaPrima</td>
+      <td>  </td>  
+      <td>  </td>
+      <td  style="text-align: right;">  {{total_mp}} </td>      
+    </tr>
+
+    <tr>  
+        <td>Valor alimento</td> 
+        <td>  </td>
+        <td>  </td>
+        
+        <td style="text-align: right;">  {{total_aba}}</td>      
+      </tr>  
+    <tr>
+    
+    <tr>  
+        <td>facturas por cobrar</td> 
+        <td>  </td>
+        <td>  </td>
+        
+        <td style="text-align: right;">  {{total_fpc}} </td>      
+    </tr>
+      
+    
+    <tr>  
+        <td>caja     </td> 
+        <td>  </td>
+        <td>  </td>
+        <td style="text-align: right;">  {{caja}} </td>      
+    </tr>    
+
+    <tr>  
+        <td></td> 
+        <td>  </td>
+        <td>  </td>
+        <td>_____________</td>      
+    </tr>    
+
+    <tr>  
+        <td>total </td> 
+        <td>  </td>
+        <td>  </td>
+        <td style="text-align: right;">{{total_activos}} </td>      
+    </tr>    
+</table>
+
+
+
+
+
+<br>
+
+
+<table  class="default ml-4">
+
+    <tr colspan="3">
+        <th colspan="3" style="text-align: center;"><h2>Pasivos</h2></th>  
+    </tr>
+  
+    <tr >  
+      <td>facturas por Pagar</td>
+      <td>  </td>  
+      <td>  </td>
+      <td  style="text-align: right;">  {{total_fpp}} </td>      
+    </tr>
+<!--
+    <tr>  
+        <td>abono fact por pagar</td> 
+        <td>  </td>
+        <td>  </td>
+        
+        <td>  {{total_a_fpp}}</td>      
+      </tr>  
+    <tr>
+    -->
+    <tr>  
+        <td>Gastos</td> 
+        <td>  </td>
+        <td>  </td>
+        
+        <td style="text-align: right;">  {{total_gastos}} </td>      
+    </tr>
+      
+    
+    
+    <tr>  
+        <td></td> 
+        <td>  </td>
+        <td>  </td>
+        <td>_____________</td>      
+    </tr>    
+
+    <tr>  
+        <td>total </td> 
+        <td>  </td>
+        <td>  </td>
+        <td style="text-align: right;">{{total_pasivos}} </td>      
+    </tr>    
+</table>
+
+
+
+
+{% endblock%}

@@ -1,0 +1,56 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+<center>
+<h1>ESTADO DE CUENTAS BANCO {{nombre_banco}} MONOTO en Bs </h1>
+</center>
+ <table class="table table-striped table-hover table-bordered bg-white table-sm ml-2" class="wrapper-table" class="jumbotron">
+                    <thead>
+                    
+                      <tr class="table-primary ">
+
+                        <td  style="text-align: center;" valign="middle"><h5 >FECHA</h5></td>  
+                        <td  style="text-align: center;" valign="middle"><h5 >DETALLE</h5></td>
+                        <td  style="text-align: center;" valign="middle"><h5 >REFERENCIA</h5></td>  
+                        <td  style="text-align: center;" valign="middle"><h5 >INGRESO</h5></td> 
+                        <td  style="text-align: center;" valign="middle"><h5 >EGRESO</h5></td> 
+                        <td  style="text-align: center;" valign="middle"><h5 >SALDO</h5></td>  
+                       <!-- <td style="text-align: center;">Operacion</td>-->
+                      </tr>
+                    </thead>
+                    
+                    {% for table in bancos %}
+                    <tr>
+                       
+
+                            <td  style="text-align: center;" >{{table.8}}</font></td>
+                            <td  style="text-align: center;" >{{table.1}}</font></td>
+                            <td  style="text-align: center;" >{{table.2}}</font></td>
+                            <td  style="text-align: center;" >{{table.3}}</font></td>
+                            <td  style="text-align: center;" >{{table.4}}</font></td>
+                            <td  style="text-align: center;" >{{table.5}}</font></td>
+                              
+                        
+                            <div class="row-md-7">    
+                       <!-- <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>-->
+                      <!-- <td> </td>
+                        <td>
+                            <center>
+                            <a href="/bancos/detalle/{{table.4}}"  class="btn btn-sm btn-success ">Detalle</a>
+                        </center>
+                    </td>-->
+                       <!--  <td>
+                            <center>
+                            <a href="/delete/{{table.0}}" class="btn btn-sm btn-danger btn-delete">borrar</a>
+                            </center>
+                        </td> -->
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+
+                </table>
+
+
+{% endblock%}

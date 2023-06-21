@@ -19,16 +19,55 @@
   
     
     
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-success bg-success">
    <!-- CUSTOM CSS    <a class="navbar-brand" href="{{ url_for('test2') }}">Inicio</a>  -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       
-      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('home') }}">Nueva Factura</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('ventas') }}">Ventas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('facturas_vencidas') }}">Facuturas Vencidas</a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('fact_x_cobrar') }}">Fact x Cobrar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('caja') }}">Caja</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Planta ABA
+            </a>
+        
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{{ url_for('ventas') }}">Inicio</a>
+              <a class="dropdown-item" href="#">Ventas</a>
+              <a class="dropdown-item" href="#">Proveedores</a>
+            </div> 
+
+          </li>
+
+        </ul>
+      </div>
     </nav>
-    
+     <center>
+    <div class="card imagen-gradient">
+      <center>
+    <img class="imgredondo" src = "{{url_for ('static', filename = '/images/piramidelogo.png')}}" width = "100" height = "100" />
+  </center>
+  </div>
+     </center>
       <!--
       <div class="container p-4">
         -->

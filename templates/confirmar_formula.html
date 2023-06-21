@@ -1,0 +1,82 @@
+
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+<!--<div class="jumbotron"> -->
+<div class="row">
+   
+    
+
+        <!--Segunda Columna -->
+        
+
+          <!--Tarjetas Caja y Gastos -->
+         
+           <!--Fin Tarjetas Caja y Gastos -->
+        <div class="row-md-12 mt-0">
+            <form class="form-signin" action="/confirmar_formula" method="POST">
+            <div class="form-group tabla-confirm-add ml-4" style="white-space: nowrap !important;">
+               <center> <h1>{{alimento_seleccionado}}</h1></center>
+             <table class="table table-striped table-hover table-bordered bg-white table-sm form-group" class="wrapper-table" class="jumbotron">
+                <thead>
+                   
+                  <tr class="table-success form-group mt-4" style="white-space: nowrap !important;">
+                    <input type="hidden" class="form-control" id="indice" name="indice" style="color:white" value="{{indice_alimento}}" >
+                    <input type="hidden" class="form-control" id="alimentoseleccionado" name="alimentoseleccionado" value="{{alimento_seleccionado}}" style="color:white" >
+                    
+                  
+                    <td style="text-align: center;"><h5 >PRODUCTO</h5></td>                        
+                    <td  style="text-align: center;" valign="middle"><h5 >CANTIDAD</h5></td>  
+                    <td>
+                        <center>
+                          <button class=" btn btn-sm btn-primary" name="productoadd" type="submit">Agregar</button>
+                      </center>
+                      
+                  </td>                      
+                    
+                   <!-- <td style="text-align: center;">Operacion</td>-->
+                  </tr>
+                </thead>
+                {% set i_suma=namespace() %}
+                {% set i_suma.counter=0 %}
+                {% for table in array_productos_add %}
+                <tr class="table1 form-group" style="white-space: nowrap !important;">
+
+                    <td style="text-align: left;" name="a{{i_suma.counter}}">
+                     <input type="hidden" class="form-control" id="textocantidad" value="{{table}}" name="a{{i_suma.counter}}">{{table}}
+                    </td>
+                    <td style="text-align: right;" name="b{{i_suma.counter}}">
+                        <input type="hidden" class="form-control" id="textocantidad2" value="{{array_kilos[i_suma.counter]}}" name="c{{i_suma.counter}}">{{array_kilos[i_suma.counter]}} Kg
+                    </td>
+                    
+                    
+                    
+                        <div class="row-md-7">    
+                  
+                  
+                        </div>
+                    </td>
+                </tr>
+                {% set i_suma.counter=i_suma.counter + 1 %}
+                {% endfor %}
+                
+
+            </table>
+           
+        </div>
+        <input type="hidden" class="form-control" id="textocantidad" value="{{i_suma.counter}}" name="b">
+    </form>
+
+
+       
+        </div>
+
+
+
+
+</div>   
+<!--</div> -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+{% endblock%}

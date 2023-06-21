@@ -1,0 +1,21 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+<div>
+    <h1>Notificacion</h1>
+</div>
+
+<div>
+    <h6> Se recomienda no borrar este producto del inventario, ya que posee una factura Nº {{factura}}, la cual posee abonos que suman un total de {{abono}} $. Si borra este archivo se eliminará esta factura y se hara un registro en el cual el usuario {{current_user.fullname}} es el responsable de dicha accion </h6>
+</div>
+<br>
+<div>
+    <center>
+    <a href="/confirmacion_final_planta_aba/inventario/delete/{{id}}/{{c_bd}}/{{k_bd}}" class="btn btn-sm btn-success btn-delete ml-4">Borrar</a>
+    <a href="/planta_aba" class="btn btn-sm btn-danger btn-delete ml-4">Cancelar</a>
+</center>
+</div>
+
+
+{% endblock%}

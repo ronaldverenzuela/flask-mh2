@@ -1,0 +1,28 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+<div class="pruebadiv" id="dato">
+    <h1>prueba div</h1>
+    <a href="javascript:imprSlec('dato')">imprimir</a>
+    
+</div>
+<div class="pruebadiv2">
+    <h1>div 2</h1>
+    <a href="javascript:window.print()">imprimir</a>
+</div>
+
+<script lenguage="javascript">
+    function imprSlec(nombre){
+        var ficha=document.getElementById(nombre)
+        var ventimp=window.open(' ','popimpr')
+        ventimp.document.write(ficha.innerHTML)
+        ventimp.document.close()
+        ventimp.print()
+        ventimp.close()
+    }
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+{% endblock%}

@@ -1,0 +1,188 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+<button class="btn btn-primary" onclick="printDiv('fpc','facturas_por_pagar')"><i class="fas fa-solid fa-print"></i>Imprimir</button>
+<div id="fpc">
+<center>
+<h1>FACTURAS POR PAGAR</h1></center>
+<div class="row-md-12 offset-md-0">
+    
+
+  <div class="row ml-4 pl-4 pb-4 mt-4">
+    
+    <div class="col-xl-3 col-md-6 mb-4 ">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            MONTO FACTURADO</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{facturado_fpc}} $</div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+  </div> 
+
+        <div class="col-xl-3 col-md-6 mb-4" id="pri" name="pri">
+              <div class="card border-left-danger shadow h-100 py-2">
+                  <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                          <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                  MONTO POR PAGAR</div>
+                              <div class="h5 mb-0 font-weight-bold text-gray-800">{{abono_fpc}} $</div>
+                          </div>
+                          
+                      </div>
+                  </div>
+              </div>
+        </div> 
+
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">MONTO total PAGADO
+                          </div>
+                          <div class="row no-gutters align-items-center">
+                              <div class="col-auto">
+                                <center>
+                                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{monto_fpc}} $</div></center>
+                              </div>
+                             
+                          </div>
+                      </div>
+                     
+                  </div>
+              </div>
+          </div>
+      </div>
+</div> 
+    <div class="col">
+        
+    
+            <div class="col-md-12">
+<!-- <td style="text-align: center;">Operacion</td>
+                <center>
+                    <form>
+                        <table class="table table-striped table-hover table-bordered bg-white table-sm fondo-gradient" class="wrapper-table" class="jumbotron">
+                            
+                            <thead>
+                            
+                                <tr>
+                                  <td>
+                                      <center>
+                                  <h1 class="display-4" style="color:#6b06ee">   FACTURAS POR COBRAR   </h1>
+                                </center> 
+                              </td>
+                                 
+                              </tr>
+                            </thead>
+                            
+                            
+                            
+                            <thead>
+                            
+                              <tr>
+                                <td>
+                                    <center>
+                                <h1 class="display-4" style="color:#ff0037">   Total Por Cobrar = {{dato2}}   </h1>
+                              </center> 
+                            </td>
+                              
+                              </tr>
+                            </thead>
+                   
+                </form>
+                    </center> -->
+               <!--   <table class="table table-striped table-hover table-bordered bg-white table-sm"  class="jumbotron"> -->
+                <table class="table table-striped table-hover table-bordered bg-white table-sm¬@"  class="jumbotron">
+                <thead>
+                     
+                      <tr class="table-info" style="white-space: nowrap !important;">
+
+                        <td style="text-align: center;"><h5 >Nº Factura</h5></td> 
+                        <td style="text-align: center;"><h5 >Fecha</h5></td>                         
+                        <td  style="text-align: center;" valign="middle"><h5 >CLIENTE</h5></td> 
+                        <td  style="text-align: center;" valign="middle"><h5 >PRODUCTO</h5></td>                        
+                        <td style="text-align: center;"><h5 >Monto</h5></td>
+                        <td style="text-align: center;"><h5 >Abono</h5></td>
+                        <td style="text-align: center;"><h5 >Debe</h5></td>
+                       <!-- <td style="text-align: center;">Operacion</td>-->
+                      </tr>
+                    </thead>
+                    
+                    {% for table in vmp %}
+                    <tr style="white-space: nowrap !important;">
+
+                        <td style="text-align: center;">{{table.1}}</td>
+                        <td style="text-align: center;">{{table.13}}</td>
+                        <td style="text-align: center;">{{table.3}}</td>
+                        <td style="text-align: center;">{{table.5}}</td>
+                        <td style="text-align: right;">{{table.8}}</td>
+                        <td style="text-align: right;">{{table.9}}</td>
+                        <td style="text-align: right;">{{table.10}}</td>
+                        
+                        
+                            <div class="row-md-7">    
+                       <!-- <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>-->
+                      <!-- <td> </td>-->
+                        <td>
+                            <center>
+                            <a href="/abonar_factura_compras_materiaprima/{{table.1}}"  class="btn btn-sm btn-success ">Detalle</a>
+                        </center>
+                    </td>
+                        
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+
+                </table>
+               
+            </div>
+           
+    </div>
+   
+</div>
+
+</div>
+
+<script>
+    
+    
+    var doc = new jsPDF();
+  
+  function saveDiv(divId, title) {
+  doc.fromHTML(`<html><head><title>${title}</title></head><body>` + document.getElementById(divId).innerHTML + `</body></html>`);
+  doc.save('div.pdf');
+  }
+  
+  function printDiv(divId,
+  title) {
+  
+  let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
+  
+  mywindow.document.write(`<html><head><title>${title}</title>`);
+  mywindow.document.write('</head><body >'+`<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">`);
+  //mywindow.document.write(`<link rel="stylesheet" type="text/css" href="../static/css/main.css" media="all" media="print">`);
+  mywindow.document.write(document.getElementById(divId).innerHTML);
+  mywindow.document.write('</body></html>');
+  
+  mywindow.document.close(); // necessary for IE >= 10
+  mywindow.focus(); // necessary for IE >= 10*/
+  
+  mywindow.print();
+  mywindow.close();
+  
+  return true;
+  } 
+  </script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+  <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+{% endblock%}

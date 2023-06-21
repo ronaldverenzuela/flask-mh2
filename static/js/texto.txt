@@ -1,0 +1,56 @@
+  var arradata=new Array();
+var a=new Array();
+var archivoTxt= new XMLHttpRequest();
+var fileRuta='static/js/datosgrafico.json'
+//var fileRuta='src/pruebajs.json'
+archivoTxt.open("GET",fileRuta,false);
+archivoTxt.send(null);
+var txt = archivoTxt.responseText;
+for(var i=0;i<txt.length;i++){
+    arradata.push(txt[i]);
+}
+var b = JSON.parse(txt)
+
+
+
+var arradata2=new Array();
+var a2=new Array();
+var archivoTxt2= new XMLHttpRequest();
+var fileRuta2='static/js/datosgraficox.json'
+//var fileRuta='src/pruebajs.json'
+archivoTxt2.open("GET",fileRuta2,false);
+archivoTxt2.send(null);
+var txt2 = archivoTxt2.responseText;
+for(var i=0;i<txt2.length;i++){
+    arradata2.push(txt2[i]);
+}
+var x = JSON.parse(txt2)
+//////////2
+  const ctx = document.getElementById('myChart');
+  var name = JSON.parse('{{ y| tojson }}');
+  console.log(name)
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: x,
+      datasets: [{
+        label: 'Ventas',
+        data: b,
+        borderWidth: 1
+      
+    },{
+     // labels: ['s','d','f','g'],
+      
+        label: 'Gastos',
+        data:  [1000,2000,3000,15000],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });

@@ -1,0 +1,62 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+    <div class="gastos-ventana">
+        <div class="gastos-titulo">
+            <h1>GASTOS</h1>
+        </div>
+            <form class="form-signin" action="/confirmacion_gastos" method="POST">
+            
+                <div class="gastos-fecha">
+                    <h6>Fecha de pago</h6>
+                  <input type="date" class="form-control" id="fecha" name="fecha" placeholder="fecha"
+               value="today"
+               min="2018-01-01" max="2060-12-31">
+                 <!-- <input type="text" class="form-control" id="fecha" name="fecha" placeholder="fecha">-->
+                </div>
+                <div class="gastos-nombre">
+                    <h6>Nombre</h6>
+                    <input type="text" name="nombre">
+                </div>
+
+                <div class="gastos-descripcion">
+                    <h6>Descripcion</h6>
+                    <input type="text" name="descripcion">
+                </div>
+
+                <div class="input-group "class="form-group"  >
+                    <div class="form">
+                        <h6>Socio que Realizo el Pago <span>*</span></h6>
+                        <select type="text" class="custom-select list-producto" id="propietario" name="propietario" >
+                    </div> 
+                
+                      {% set glob=namespace() %}
+                      {% set glob.counter=0 %}
+                      {% for table in propietario %}
+                
+                      <option value={{glob.counter}}>{{table}}</option>
+                    
+                      {% set glob.counter=glob.counter + 1 %}
+                      {% endfor %}
+                
+                        </select>
+                </div>
+
+                
+
+                <div class="gastos-monto">
+                    <h6>Monto</h6>
+                    <input type="text" name="monto" id="">
+                </div>
+
+                <div class="gastos-boton">
+                    <center>
+                    <button class=" btn btn-sm btn-primary" type="submit">Agregar</button>
+                    </center>
+                </div>
+            </form>
+
+    </div>
+
+{% endblock%}

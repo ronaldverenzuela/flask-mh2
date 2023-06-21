@@ -1,0 +1,103 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+<button class="btn btn-primary" onclick="printDiv('fpc','facturas_por_cobrar')"><i class="fas fa-solid fa-print"></i>Imprimir</button>
+
+<div id="fpc">
+
+<div>
+<h1>{{cliente}} </h1>
+<h6>{{producto}} Monto Total = {{monto}} $</h6>
+</div>
+
+   
+
+<table class="table table-striped table-hover table-bordered bg-white table-sm " class="wrapper-table" class="jumbotron">
+    <thead>
+   
+      <tr class="table-success ">
+
+                              
+        
+        
+        <td style="text-align: center;"><h5 > FECHA </h5></td>
+        <td style="text-align: center;"><h5 >ABONO $</h5></td>     
+        <td style="text-align: center;"><h5 >ABONO Bs</h5></td>  
+                  
+        <td style="text-align: center;"><h5 >BANCO</h5></td>
+        <td style="text-align: center;"><h5 >REFERENCIA</h5></td>
+        <td style="text-align: center;"><h5 >TASA</h5></td>
+        <td style="text-align: center;"><h5 >TOTAL ABONO</h5></td>
+        <td style="text-align: center;"><h5 >DEBE</h5></td>
+       <!-- <td style="text-align: center;">Operacion</td>-->
+      </tr>
+    </thead>
+    
+    {% for table in fv %}
+    <tr>
+       
+
+            <td  style="text-align: center;" >{{table.5}}</font></td>
+            
+            <td  style="text-align: center;" >{{table.7}}</font></td>
+            <td  style="text-align: center;" >{{table.8}}</font></td>
+            <td  style="text-align: center;" >{{table.9}}</font></td>
+            <td  style="text-align: center;" >{{table.10}}</font></td>
+            <td  style="text-align: right;"  >{{table.11}}</font></td>
+            <td  style="text-align: right;"  >{{table.13}}</font></td>
+            <td  style="text-align: right;"  >{{table.14}}</font></td>    
+        
+            <div class="row-md-7">    
+       <!-- <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>-->
+      <!-- <td> </td>-->
+        <td>
+            <center>
+            <a href="/prepagar_factura_compras_materiaprima/{{table.2}}"  class="btn btn-sm btn-success ">Abonar</a>
+        </center>
+    </td>
+       
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+    
+
+</table>
+
+</div>
+
+
+<script>
+    
+    
+  var doc = new jsPDF();
+
+function saveDiv(divId, title) {
+doc.fromHTML(`<html><head><title>${title}</title></head><body>` + document.getElementById(divId).innerHTML + `</body></html>`);
+doc.save('div.pdf');
+}
+
+function printDiv(divId,
+title) {
+
+let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
+
+mywindow.document.write(`<html><head><title>${title}</title>`);
+mywindow.document.write('</head><body >'+`<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">`);
+//mywindow.document.write(`<link rel="stylesheet" type="text/css" href="../static/css/main.css" media="all" media="print">`);
+mywindow.document.write(document.getElementById(divId).innerHTML);
+mywindow.document.write('</body></html>');
+
+mywindow.document.close(); // necessary for IE >= 10
+mywindow.focus(); // necessary for IE >= 10*/
+
+mywindow.print();
+mywindow.close();
+
+return true;
+} 
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+{% endblock%}

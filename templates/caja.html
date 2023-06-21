@@ -38,29 +38,67 @@
           </form>
         </div> 
 
-        <div class="col-md-0 ">
+        <!--etiquetas caja y gastos 
+            <div class="col-md-0 ">
           <div class="card card-body mp-0">       
               <div class="form-group">               
                 <h1 style="color:#41722e">Caja = {{gastos2}}</h1>
               </div>
           </div>
-        </div>
+            </div>
 
-        <div class="col-md-0 ">
+                <div class="col-md-0 ">
           <div class="card card-body mp-0">       
               <div class="form-group">               
                 <h1 style="color:#ff000d">Gastos = {{gastos}}</h1>
               </div>
           </div>
-        </div>
+                </div> -->
     </div>
     
 
+        <!--Segunda Columna -->
+        <div class="col">
 
-    <div class="col">
-        
-    
-        <div class="col-md-12">
+          <!--Tarjetas Caja y Gastos -->
+          <div class="row">
+                <div class="col-xl-3 col-md-6 mb-0">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Disponible</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{gastos2}} $</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>  
+
+                <div class="col-xl-3 col-md-6 mb-0">
+            <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                Gastos</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{gastos}} $</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>  
+              
+          </div>
+           <!--Fin Tarjetas Caja y Gastos -->
+        <div class="row-md-12 mt-0">
 
             <center>
                 <form>
@@ -114,7 +152,7 @@
            
         </div>
        
-</div>
+        </div>
 
 
 

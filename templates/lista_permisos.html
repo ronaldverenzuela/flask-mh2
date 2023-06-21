@@ -1,0 +1,67 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+
+<table class="table table-hover table-bordered  bg-white table-sm ml-4"  class="wrapper-table" class="jumbotron"  >
+    <thead>
+        
+        <div class="row">
+            <div class="col">
+        <center>
+        <div class="text-xs text-uppercase mt-4">
+            Solicitud de Permisos </div></center>
+        </div>
+        <div class="col">
+            <a href="#"><i class="fas fa-solid fa-print ml-4"></i>imprimir</a> 
+        </div>
+        </div>
+      <tr class="table-primary ">
+    
+                              
+        <td  style="text-align: center;" valign="middle"><h5 >FECHA</h5></td>  
+        <td  style="text-align: center;" valign="middle"><h5 >MOTIVO</h5></td> 
+        <td  style="text-align: center;" valign="middle"><h5 >SOLICITADO POR</h5></td> 
+        
+        
+        
+       
+    
+       <!-- <td style="text-align: center;">Operacion</td>-->
+      </tr>
+      
+    </thead>
+    {% set i_suma=namespace() %}
+              {% set i_suma.counter=0 %}
+    {% for table in list_permisos %}
+    <tr>
+        
+            <td  style="text-align: center;">{{fechao}}</td>
+            <td  style="text-align: center;">{{table.2}}</td>
+            <td  style="text-align: center;">{{usuario[i_suma.counter].3}}</td>
+            
+            <div class="row-md-7">    
+       <!-- <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>-->
+      <!-- <td> </td>-->
+        <td>
+            <center>
+            <a href="/aceptar_solicitud_permiso/{{usuario[i_suma.counter].0}}/{{table.0}} "  class="btn btn-sm btn-success ">Aceptar</a>
+        </center>
+    </td>
+        <td>
+            <center>
+            <a href="#" class="btn btn-sm btn-danger btn-delete">Denegar</a>
+            </center>
+        </td>
+            </div>
+        </td>
+    </tr>
+
+    
+
+    
+    {% set i_suma.counter=i_suma.counter + 1 %}
+    {% endfor %}
+
+
+{% endblock%}

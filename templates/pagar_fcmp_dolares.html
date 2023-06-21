@@ -1,0 +1,95 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages(category_filter=["pago_dolares"]) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+    {% endfor %}
+    </ul>
+  {% endif %}
+  
+{% endwith %}
+
+
+
+
+
+{% with messages = get_flashed_messages(category_filter=["monto_mayor_dolares"]) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+    {% endfor %}
+    </ul>
+  {% endif %}
+  
+{% endwith %}
+
+
+<div>
+<h1>{{cliente}} </h1>
+</div>
+<form class="form-signin" action="/confirmacion_factura_compras_materiaprima/dolares/{{factura}}" method="POST">
+    <div class="form-group ml-4">
+
+      <div class="form-group">
+        <h6>Fecha de pago</h6>
+      <input type="date" class="form-control redondo" id="fecha" name="fecha" placeholder="fecha"
+   value="today"
+   min="2018-01-01" max="2060-12-31">
+     <!-- <input type="text" class="form-control" id="fecha" name="fecha" placeholder="fecha">-->
+    </div>
+    
+    <hr>
+<div class="form-group"> 
+    <h6>Monto</h6> 
+    <input type="text" class="form-control redondo" id="abono" name="abono" placeholder="Ingrese el monto ">                  
+  </div>
+  <hr>
+  <div class="input-group "class="form-group"  >
+    <div class="form">
+        <h6>Pagado Por <span>*</span></h6>
+        <select type="text" class="custom-select list-producto" id="propietario" name="propietario" >
+    </div> 
+
+      {% set glob=namespace() %}
+      {% set glob.counter=0 %}
+      {% for table in propietario %}
+
+      <option value={{glob.counter}}>{{table}}</option>
+    
+      {% set glob.counter=glob.counter + 1 %}
+      {% endfor %}
+
+        </select>
+</div>
+
+
+  <hr>
+    <div class="form-group">
+    <center>
+      <button class=" btn btn-sm btn-primary redondo" type="submit">Agregar</button>
+      </center>
+  </div>
+</div>
+
+</div>
+
+
+
+{% endblock%}

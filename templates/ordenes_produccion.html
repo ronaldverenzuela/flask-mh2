@@ -1,0 +1,108 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+<div class="col mb-4" >
+   
+<table class="table table-hover table-bordered  bg-white table-sm ml-4"  class="wrapper-table" class="jumbotron"  >
+    <thead>
+        
+        <div class="row">
+            <div class="col">
+        <center>
+        <div class="text-xs text-uppercase mt-4">
+            Orden de Produccion </div></center>
+        </div>
+       
+        </div>
+      <tr class="table-primary ">
+    
+                              
+        <td  style="text-align: center;" valign="middle"><h5 >ALIMENTO</h5></td>  
+        <td  style="text-align: center;" valign="middle"><h5 >FECHA</h5></td> 
+        <td  style="text-align: center;" valign="middle"><h5 >BACHES</h5></td> 
+        <td  style="text-align: center;" valign="middle"><h5 >COSTO</h5></td>  
+        <td  style="text-align: center;" valign="middle"><h5 >ESTADO</h5></td> 
+        
+        
+       
+    
+       <!-- <td style="text-align: center;">Operacion</td>-->
+      </tr>
+      
+    </thead>
+
+    {% for table in aba_nook %}
+    <tr>
+        
+            <td  style="text-align: center;">{{table.1}}</td>
+            <td  style="text-align: center;">{{table.2}}</td>
+            <td  style="text-align: center;">{{table.4}}</td>
+            <td  style="text-align: center;">{{table.6}}</td>
+            <td  style="text-align: center;">{{table.5}}</td>
+            <div class="row-md-7">    
+                <td>
+                    <center>
+                    <a href="/estado_produccion/{{table.0}}"  class="btn btn-sm btn-success ">Procesado</a>
+                </center>
+            </td>
+       
+    </tr>
+
+   
+    {% endfor %}
+</div>
+
+
+
+
+
+<div class="col mt-4" >
+   
+    <table class="table table-hover table-bordered  bg-white table-sm ml-4"  class="wrapper-table" class="jumbotron"  >
+        <thead>
+            
+            <div class="row">
+                <div class="col">
+            <center>
+            <div class="text-xs text-uppercase mt-4">
+                Orden de Produccion procesadas</div></center>
+            </div>
+            
+            </div>
+          <tr class="table-primary ">
+        
+                                  
+            <td  style="text-align: center;" valign="middle"><h5 >ALIMENTO</h5></td>  
+            <td  style="text-align: center;" valign="middle"><h5 >FECHA</h5></td> 
+            <td  style="text-align: center;" valign="middle"><h5 >BACHES</h5></td> 
+            <td  style="text-align: center;" valign="middle"><h5 >COSTO</h5></td>  
+            <td  style="text-align: center;" valign="middle"><h5 >ESTADO</h5></td> 
+            
+            
+           
+        
+           <!-- <td style="text-align: center;">Operacion</td>-->
+          </tr>
+          
+        </thead>
+    
+        {% for table in aba_ok %}
+        <tr>
+           
+                <td class="alerta2" style="text-align: center;">{{table.1}}</td>
+                <td class="alerta2" style="text-align: center;">{{table.2}}</td>
+                <td class="alerta2" style="text-align: center;">{{table.4}}</td>
+                <td class="alerta2" style="text-align: center;">{{table.6}}</td>
+                <td class="alerta2" style="text-align: center;">{{table.5}}</td>
+                <div class="row-md-7">    
+           <!-- <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>-->
+          <!-- <td> </td>-->
+           
+        </tr>
+    
+        
+        {% endfor %}
+    </div>
+
+{% endblock%}

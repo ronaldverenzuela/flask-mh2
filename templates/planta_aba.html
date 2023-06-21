@@ -1,0 +1,312 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages(category_filter=["borrar_inventario_mp"]) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+    {% endfor %}
+    </ul>
+  {% endif %}
+  
+{% endwith %}
+
+<div class="card-body" style="display: flex" style="flex-direction: row" style="flex-wrap: nowrap" style="width: 3px">
+   
+    <div class="row">
+         <!-- Tabla Inventario Materia Prima-->
+         
+        <div >
+            
+            <div><button class="btn btn-primary" onclick="printDiv('dato2','Inventario Alimento')"><i class="fas fa-solid fa-print"></i>Imprimir</button></div>
+            <!--   <a href="javascript:imprSlec('dato')"><i class="fas fa-solid fa-print"></i>imprimir</a>-->
+            
+            <div class="col" id="dato2">
+            <div class="card text-inventario" >
+                <center>
+                    
+                    <h1>Inventario Materia Prima</h1>
+                </center>
+        <table class="table-planta-aba  table-bordered bg-white table-sm"  class="jumbotron" >
+        <thead>
+        
+          <tr class="table-primary " >
+    
+                                  
+            <td  style="text-align: center;" valign="middle"><h5 >PRODUCTO</h5></td>  
+            <td  style="text-align: center;" valign="middle"><h5 >KILOS</h5></td> 
+            <td  style="text-align: center;" valign="middle"><h5 >COSTO</h5></td> 
+            <td  style="text-align: center;" valign="middle"><h5 >DIAS PONEDORA</h5></td> 
+            <td  style="text-align: center;" valign="middle"><h5 >DIAS PONEDORA 2</h5></td> 
+            
+             
+           
+           <!-- <td style="text-align: center;">Operacion</td>-->
+          </tr>
+        </thead>
+        {% set i_suma=namespace() %}
+              {% set i_suma.counter=0 %}
+        {% for tab in productos_inv %}
+        <tr style="white-space: nowrap !important;">
+            
+            {% if alerta[i_suma.counter] == "normal"  %}
+                <td class="normal" style="text-align: center;" ><center>{{tab}}</center></font> 
+                    <progress id="file" max="100" value="{{porcentaje[i_suma.counter]}}" text="70%" style="color:black !important"> 70% </progress>
+                </td>
+                <td class="normal" style="text-align: center;" >{{productos_suma[i_suma.counter]}} Kg</font></td>
+                <td class="normal" style="text-align: center;" >{{costo_mp[i_suma.counter]}} $</font></td>
+                <td class="normal" style="text-align: center;" >{{buzon_matriz_mp[i_suma.counter]}}</font></td>
+                <td class="normal" style="text-align: center;" >{{dias_p2[i_suma.counter]}}</font></td>
+                
+            {% else %}
+                <td class="alerta" style="text-align: center;" ><center>{{tab}}</center></font>
+                    <progress id="file" max="100" value="{{porcentaje[i_suma.counter]}}" style="color:black"> 70% </progress>
+                </td>
+                <td class="alerta" style="text-align: center;" >{{productos_suma[i_suma.counter]}} Kg</font></td>
+                <td class="alerta" style="text-align: center;" >{{costo_mp[i_suma.counter]}} $</font></td>
+                <td class="alerta" style="text-align: center;" >{{buzon_matriz_mp[i_suma.counter]}}</font></td>
+                <td class="alerta" style="text-align: center;" >{{dias_p2[i_suma.counter]}}</font></td>
+            {% endif %}    
+            
+                <div class="row-md-7">    
+         
+         <!--     <td>
+              <center>
+                <a href="/relacion/factura/{{tab.1}}"  class="btn btn-sm btn-success ">Abonar</a>
+            </center>
+            
+        </td>
+            <td>
+                <center>
+                <a href="/delete/{{tab.0}}" class="btn btn-sm btn-danger btn-delete">borrar</a>
+                </center>
+            </td>
+                </div>
+            </td>-->
+        </tr>
+        {% set i_suma.counter=i_suma.counter + 1 %}
+        {% endfor %}
+        
+    
+        </table>
+            </div>
+        
+        </div>
+    </div>
+        <!-- Fin Tabla Inventario Materia Prima-->
+
+
+         <!-- Tabla Inventario Alimento-->
+        <div class="col" id="dato3">
+            <button class="btn btn-primary" onclick="printDiv('dato3','hdgs')"><i class="fas fa-solid fa-print"></i>Imprimir</button>
+           
+            <div class="card text-inventario"> <center><h1 >Inventario Alimento</h1></center> 
+        <table class="table  table-bordered  table-sm"  class="jumbotron">
+        <thead>
+        
+          <tr class="table-danger " style="white-space: nowrap !important">
+    
+                                  
+            <td  style="text-align: center;" valign="middle"><h5 >PRODUCTO</h5></td>  
+            <td  style="text-align: center;" valign="middle"><h5 >KILOS</h5></td>
+            <td  style="text-align: center;" valign="middle"><h5 >SACOS</h5></td>
+            <td  style="text-align: center;" valign="middle"><h5 >COSTO Kg</h5></td>  
+           
+           <!-- <td style="text-align: center;">Operacion</td>-->
+          </tr>
+        </thead>
+        {% set i_suma=namespace() %}
+              {% set i_suma.counter=0 %}
+        {% for tab in alimento_inv %}
+        <tr class="borde-negro !important" style="white-space: nowrap !important">
+            
+    
+                <td style="text-align: left;" >{{tab}}</font></td>
+                <td style="text-align: center;" >{{alimento_suma[i_suma.counter]}} Kg</font></td>
+                <td style="text-align: center;" >{{sacos_aba[i_suma.counter]}}</font></td>
+                <td style="text-align: center;" >{{costo_p[i_suma.counter]}} $</font></td>
+                
+            
+                <div class="row-md-7">    
+         
+         <!--     <td>
+              <center>
+                <a href="/relacion/factura/{{tab.1}}"  class="btn btn-sm btn-success ">Abonar</a>
+            </center>
+            
+        </td>
+            <td>
+                <center>
+                <a href="/delete/{{tab.0}}" class="btn btn-sm btn-danger btn-delete">borrar</a>
+                </center>
+            </td>
+                </div>
+            </td>-->
+        </tr>
+        {% set i_suma.counter=i_suma.counter + 1 %}
+        {% endfor %}
+        
+    
+        </table>
+            </div>
+   
+        </div>
+
+          
+        <!-- Fin Tabla Inventario Alimento-->
+
+    </div>
+</div>
+
+     <!-- Tabla Inventario  Completo-->
+     <button class="btn btn-primary" onclick="printDiv('dato4','inventario')"><i class="fas fa-solid fa-print"></i>Imprimir</button>
+     <div class="card text-inventario" id="dato4"> <center><h1>Inventario General</h1></center>
+<table class="table   table-sm" class="wrapper-table" class="jumbotron" id="dato">
+    <thead>
+    
+      <tr class="table-warning " id="dato">
+
+        <td style="text-align: center;"><h5 >FACTURA</h5></td>  
+        <td style="text-align: center;" valign="middle"><h5 >FECHA</h5></td> 
+        <td style="text-align: center;"><h5 >PROVEEDOR</h5></td>                         
+        <td style="text-align: center;"><h5 >PROPIETARIO</h5></td> 
+        <td style="text-align: center;" valign="middle"><h5 >PRODUCTO</h5></td> 
+        <td style="text-align: center;"><h5 > KILOS </h5></td>
+        <td style="text-align: center;"><h5 >PRECIO</h5></td>  
+        <td style="text-align: center;"><h5 >TOTAL</h5></td>
+        <td style="text-align: center;"><h5 >COMENTARIO</h5></td>
+       
+       <!-- <td style="text-align: center;">Operacion</td>-->
+      </tr>
+    </thead>
+    
+    {% for table in tabla1 %}
+    <tr class="borde-negro" id="dato" style="white-space: nowrap !important;">
+        
+
+           
+            <td style="text-align: center;" >{{table.9}}</font></td>
+            <td style="text-align: center;" >{{table.2}}</font></td>
+            <td style="text-align: center;" >{{table.4}}</font></td>
+            <td style="text-align: center;" >{{table.6}}</font></td>
+            <td style="text-align: center;" >{{table.1}}</font></td>
+            <td style="text-align: center;" >{{table.3}}</font></td>
+            <td style="text-align: center;" >{{table.5}}</font></td>
+            <td style="text-align: center;" >{{table.8}}</font></td>
+            <td style="text-align: center;" >{{table.10}}</font></td>
+           
+        
+            <div class="row-md-7">    
+       <!-- <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>-->
+      <!-- <td> </td>-->
+      {% if current_user.permiso=='1'%}
+     <!--    <td>
+            <center>
+            <a href="/abonar_factura_compra_materiaprima/{{table.9}}"  class="btn btn-sm btn-success ">Editar</a>
+        </center>
+    </td>-->
+        <td id="datax">
+            <center>
+            <a href="/planta_aba/inventario/delete/{{table.0}}/{{table.8}}/{{table.3}}" class="btn btn-sm btn-danger btn-delete">borrar</a>
+            </center>
+        </td>
+            </div>
+        </td>
+        {%endif%}
+    </tr>
+    {% endfor %}
+    
+
+</table>
+
+</div>
+
+<script >
+ /* function imprSlec(nombre){
+        var ficha=document.getElementById(nombre)
+        var ventimp=window.open(' ','popimpr')
+        
+       // ventimp.document.write('<html><head><title>' + document.title + '</title>');
+            ventimp.document.write('<link rel="stylesheet" type="text/css" href="../static/css/main.css" media="all" media="print">');
+ // ventimp.document.write('</head><body >');
+
+        ventimp.document.write(ficha.innerHTML)
+      //  ventimp.document.write('</body></html>');
+        
+        ventimp.document.close()
+        ventimp.print()
+        ventimp.close()
+    }
+ 
+    document.querySelector("#dato2").addEventListener("click", function() {
+  var div = document.querySelector("#dato2");
+  imprSlec(div);
+});*/
+  /*  function imprimir(dato){
+        window.print(dato);
+    }
+    document.querySelector('#dato2').addEventListener('click',imprimir);*/
+   
+   
+
+  /*  $(document).on('click', '#convertHtmlToPDF', function(){
+converHTMLToPDF();
+});*/
+
+/*
+document.addEventListener("DOMContentLoaded", () => {
+    let boton = document.getElementById("crearpdf");
+    let container = document.getElementById("dato2");
+ 
+    boton.addEventListener("click", event => {
+        event.preventDefault();
+        boton.style.display = "none";
+        window.print();
+    }, false);
+ 
+    container.addEventListener("click", event => {
+        boton.style.display = "initial";
+    }, false);
+ 
+}, false);
+*/
+
+var doc = new jsPDF();
+
+function saveDiv(divId, title) {
+ doc.fromHTML(`<html><head><title>${title}</title></head><body>` + document.getElementById(divId).innerHTML + `</body></html>`);
+ doc.save('div.pdf');
+}
+
+function printDiv(divId,
+  title) {
+
+  let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
+
+  mywindow.document.write(`<html><head><title>${title}</title>`);
+  mywindow.document.write('</head><body >'+`<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">`);
+ //mywindow.document.write(`<link rel="stylesheet" type="text/css" href="../static/css/main.css" media="all" media="print">`);
+  mywindow.document.write(document.getElementById(divId).innerHTML);
+  mywindow.document.write('</body></html>');
+
+  mywindow.document.close(); // necessary for IE >= 10
+  mywindow.focus(); // necessary for IE >= 10*/
+
+  mywindow.print();
+  mywindow.close();
+
+  return true;
+} 
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+{% endblock%}

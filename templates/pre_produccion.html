@@ -1,0 +1,17 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+<h1>{{alimento}} </h1>
+<div>
+    <h6>Ingrese la Cantidad de Baches a Producir</h6>
+</div>
+<form class="form-signin" action="/add_producir/{{indice_alimento}}/{{costo}}" method="POST">
+<input type="text" id="cantidad" name="cantidad" >
+<center>
+    <button class=" btn btn-sm btn-primary" type="submit">Agregar</button>
+    </center>
+</form>
+
+
+{% endblock%}

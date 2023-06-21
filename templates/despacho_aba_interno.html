@@ -1,0 +1,200 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+{% with messages = get_flashed_messages(category_filter=["inventariobajo"]) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+    {% endfor %}
+    </ul>
+  {% endif %}
+  
+{% endwith %}
+
+
+
+
+{% with messages = get_flashed_messages(category_filter=["todosloscampos"]) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+    {% endfor %}
+    </ul>
+  {% endif %}
+  
+{% endwith %}
+{% with messages = get_flashed_messages(category_filter=["salida_aba_interno"]) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+    {% endfor %}
+    </ul>
+  {% endif %}
+  
+{% endwith %}
+
+
+
+
+<div class="venta-aba-interno">
+    <form class="form-signin f" action="/confirmacion/salida_alimento/interno" method="POST">
+          <div  class="form-add-inv">
+            <div class="card card-body mp-4 form-gradient-venta-aba-interno">
+               
+                
+                  <div class="form-group titulo-inv">   
+                      <center>            
+                          <h3 style="color:#f8fcf8"> DESPACHO INTERNO ALIMENTO</h3>          
+                      </center>
+                  </div>
+            <div class="row">
+                <div class="card-fact-inv">
+                  <div class="form-group form-nun-fact">
+                    <h4>numero de factura</h4>
+                    <input type="text" class="form-control" id="num_fact" name="num_fact" >
+                  </div>
+                </div>
+              <div class="card-fecha-inv">
+                <div class="form-group form-fecha">
+                    <h4>Fecha</h4>
+                    <input type="date" class="form-control" id="fecha" name="fecha" "
+                                value="today"
+                                min="2018-01-01" max="2060-12-31">
+                
+                </div>
+              </div>
+        </div>
+  
+          <div class="row mt-4">
+              <div class="card-proveedor">
+                  <div class="form-group form-proveedor">
+                    <center>
+                    <h4>Destino</h4></center>
+                    <select type="text" class="custom-select list-proveedor" id="destino" name="destino" >
+                    </div> 
+  
+                      {% set glob=namespace() %}
+                      {% set glob.counter=0 %}
+                      {% for table in granja %}
+  
+                      <option value={{glob.counter}}>{{table}}</option>
+                    
+                      {% set glob.counter=glob.counter + 1 %}
+                      {% endfor %}
+  
+                        </select>
+                  </div>
+                </div>
+  
+                <div class="card-propietario">
+               
+              </div>
+          </div>
+  
+                
+                    
+  
+          <div class="row mt-4">
+          <div class="card-descripcion">
+              <div class="input-group  class="form-group"  >
+                            <div class="form-producto">
+                                <h4>Producto</h4>
+                                <select type="text" class="custom-select list-producto" id="producto" name="producto" >
+                            </div> 
+  
+                              {% set glob=namespace() %}
+                              {% set glob.counter=0 %}
+                              {% for table in producto %}
+  
+                              <option value={{glob.counter}}>{{table}}</option>
+                            
+                              {% set glob.counter=glob.counter + 1 %}
+                              {% endfor %}
+  
+                                </select>
+              </div>
+                    
+  
+                
+  
+                  <div class="form-group form-cantidad" >
+                      <label for="cantidad"><h4>Cantidad</h4></label>
+                      <input type="text" class="form-control" id="cantidad" name="cantidad"  onkeypress="return (event.charCode >= 48 && event.charCode <= 57 ||event.charCode==46)">
+                  </div>
+  
+                  <div class="form-group form-precio">
+                    <!--  <h4>Precio</h4>-->  
+                  <input type="hidden" class="form-control" value="{{precio}}" id="precio" name="precio"onkeypress="return (event.charCode >= 45 && event.charCode <= 57 )">
+                  </div>
+  
+  
+                 
+          </div>
+          </div>  
+      
+  
+        <div class="row">
+          <div class="card-comentario">
+            <div class="form-group form-comentario">
+                    <h4>Comentario</h4>
+                    <input type="text" class="form-control" id="comentario" name="comentario">
+            </div> 
+          </div> 
+        </div> 
+        
+          <div class="row">
+            <div class="card-boton">
+            <center>
+              <button class=" btn btn-sm btn-primary form-boton" type="submit">Agregar</button>
+              </center>
+            </div>
+          </div>
+    
+    </form>
+  
+  
+  
+  
+  
+  
+  
+  
+      
+  
+  
+  </div>
+  
+  
+  <script>
+    function filtro()
+  {
+  var tecla = event.key;
+  if (["."].includes(tecla))
+  event.preventDefault()
+  }
+  </script>
+ 
+
+
+{% endblock%}

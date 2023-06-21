@@ -1,0 +1,327 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+   
+    <button class="btn btn-primary" onclick="printDiv('interno','despacho interno')"><i class="fas fa-solid fa-print"></i>Imprimir</button>
+<div id="interno">
+    <center>
+    <h2>UTILIDAD DE DESPACHO DE ALIMENTO DESDE {{fecha1}} HASTA {{fecha2}} </h2>
+</center>
+    <div class="row ">
+        
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-warning shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                              despacho interno</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">{{fecha1}}  </div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">{{fecha2}} </div>
+                      </div>
+                      <div class="col-auto">
+                         
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                            total utilidad</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_utilidad}} $</div>
+                    </div>
+                    <div class="col-auto">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                              Utilidad mh 2018</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">{{utilidad_mh}} $</div>
+                      </div>
+                      <div class="col-auto">
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                              utilidad proaba</div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">{{utilidad_proaba}} $</div>
+                      </div>
+                      <div class="col-auto">
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    
+    
+    
+    
+     
+      </div>
+     <table class="table table-striped table-hover table-bordered bg-white table-sm " class="wrapper-table" class="jumbotron">
+                        <thead>
+                        
+                          <tr class="table-primary  " ><center> <h1 style="color:red">Reporte Utilidad Despacho Interno</h1></center>
+    
+                            <td  style="text-align: center;" valign="middle"><h5 >FECHA</h5></td>  
+                            <td  style="text-align: center;" valign="middle"><h5 >ALIMENTO</h5></td>                             
+                            <td  style="text-align: center;" valign="middle"><h5 >CLIENTE</h5></td> 
+                            <td  style="text-align: center;" valign="middle"><h5 >PROPIETARIO</h5></td> 
+                            <td  style="text-align: center;" valign="middle"><h5 >KG</h5></td> 
+                            <td  style="text-align: center;" valign="middle"><h5 >COSTO FORM</h5></td> 
+                            <td  style="text-align: center;" valign="middle"><h5 >COSTO OPER</h5></td>
+                            <td  style="text-align: center;" valign="middle"><h5 >COSTO FINAL</h5></td>   
+                            <td  style="text-align: center;" valign="middle"><h5 >PRECIO VENTA</h5></td> 
+                            <td  style="text-align: center;" valign="middle"><h5 >UTILIDAD x Kg</h5></td>
+                            <td  style="text-align: center;" valign="middle"><h5 >UTILIDAD TOTAL</h5></td>
+                            <td  style="text-align: center;" valign="middle"><h5 >UTILIDAD MH 2018</h5></td>
+                            <td  style="text-align: center;" valign="middle"><h5 >UTILIDAD PROABA</h5></td>  
+                           <!-- <td style="text-align: center;">Operacion</td>-->
+                          </tr>
+                        </thead>
+                        {% set i=namespace() %}
+                        {% set i.counter=0 %}
+                        {% for table in kg_dai %}
+                        <tr style="white-space: nowrap !important;">
+                           
+    
+                                <td  style="text-align: center;"  >{{fecha[i.counter]}}</font></td>
+                                <td  style="text-align: center;" >{{alimento[i.counter]}}</font></td>
+                                <td  style="text-align: center;" >{{cliente[i.counter]}}</font></td>
+                                <td  style="text-align: center;" >{{propietario[i.counter]}}</font></td>
+                                <td  style="text-align: center;" >{{kg_dai[i.counter]}} Kg</font></td>
+                                <td  style="text-align: center;" >{{cp_dai[i.counter]}} $</font></td>
+                                <td  style="text-align: center;" >{{co_dai[i.counter]}} $</font></td>
+                                <td  style="text-align: center;" >{{costo_final[i.counter]}} $</font></td>
+                                <td  style="text-align: center;" >{{precio_venta[i.counter]}} $</font></td>
+                                <td  style="text-align: center;" >{{uti_kg[i.counter]}} $</font></td>
+                                <td  style="text-align: center;" >{{uti_total[i.counter]}} $</font></td>
+                                <td  style="text-align: center;" >{{uti_mh[i.counter]}} $</font></td>
+                                <td  style="text-align: center;" >{{uti_proaba[i.counter]}} $</font></td>
+                                
+                                  
+                            
+                                <div class="row-md-7">    
+                           <!-- <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>-->
+                          <!-- <td> </td>
+                            <td>
+                                <center>
+                                <a href="/bancos/detalle/{{table.4}}"  class="btn btn-sm btn-success ">Detalle</a>
+                            </center>
+                        </td>-->
+                           <!--  <td>
+                                <center>
+                                <a href="/delete/{{table.0}}" class="btn btn-sm btn-danger btn-delete">borrar</a>
+                                </center>
+                            </td> -->
+                                </div>
+                            </td>
+                        </tr>
+                        {% set i.counter=i.counter + 1 %}
+                        {% endfor %}
+                        
+    
+                    </table>
+
+</div>
+  
+
+<hr>
+<div class="row mt-4 mb-4" ></div>
+<div class="row mt-4 mb-4" ></div>
+<hr>
+<button class="btn btn-primary" onclick="printDiv('ventas','despacho ventas')"><i class="fas fa-solid fa-print"></i>Imprimir</button>
+<div id="ventas">
+    <center>
+<h2>UTILIDAD DE VENTAS DE ALIMENTO DESDE {{fecha1}} HASTA {{fecha2}} </h2>
+    </center>
+    <div class="row  mt-4">
+        
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                despacho ventas</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{fecha1}}  </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{fecha2}} </div>
+                                        </div>
+                                        <div class="col-auto">
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                total utilidad</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_utilidad_ventas}} $</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Utilidad mh 2018</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{vutilidad_mh}} $</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                utilidad proaba</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{vutilidad_proaba}} $</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+                      
+                      
+                      
+                        
+        </div>
+       <table class="table table-striped table-hover table-bordered bg-white table-sm " class="wrapper-table" class="jumbotron">
+                                          <thead>
+                                          
+                                            <tr class="table-danger  " ><center> <h1 style="color:red">Reporte Utilidad Despacho Ventas</h1></center>
+                      
+                                              <td  style="text-align: center;" valign="middle"><h5 >FECHA</h5></td>  
+                                              <td  style="text-align: center;" valign="middle"><h5 >ALIMENTO</h5></td>                             
+                                              <td  style="text-align: center;" valign="middle"><h5 >CLIENTE</h5></td> 
+                                              <td  style="text-align: center;" valign="middle"><h5 >PROPIETARIO</h5></td> 
+                                              <td  style="text-align: center;" valign="middle"><h5 >KG</h5></td> 
+                                              <td  style="text-align: center;" valign="middle"><h5 >COSTO FORM</h5></td> 
+                                              <td  style="text-align: center;" valign="middle"><h5 >COSTO OPER</h5></td>
+                                              <td  style="text-align: center;" valign="middle"><h5 >COSTO FINAL</h5></td>   
+                                              <td  style="text-align: center;" valign="middle"><h5 >PRECIO VENTA</h5></td> 
+                                              <td  style="text-align: center;" valign="middle"><h5 >UTILIDAD x Kg</h5></td>
+                                              <td  style="text-align: center;" valign="middle"><h5 >UTILIDAD TOTAL</h5></td>
+                                              <td  style="text-align: center;" valign="middle"><h5 >UTILIDAD MH 2018</h5></td>
+                                              <td  style="text-align: center;" valign="middle"><h5 >UTILIDAD PROABA</h5></td>  
+                                             <!-- <td style="text-align: center;">Operacion</td>-->
+                                            </tr>
+                                          </thead>
+                                          {% set i=namespace() %}
+                                          {% set i.counter=0 %}
+                                          {% for table in vkg_dai %}
+                                          <tr style="white-space: nowrap !important;">
+                                             
+                      
+                                                  <td  style="text-align: center;"  >{{vfecha[i.counter]}}</font></td>
+                                                  <td  style="text-align: center;" >{{valimento[i.counter]}}</font></td>
+                                                  <td  style="text-align: center;" >{{vcliente[i.counter]}}</font></td>
+                                                  <td  style="text-align: center;" >{{vpropietario[i.counter]}}</font></td>
+                                                  <td  style="text-align: center;" >{{vkg_dai[i.counter]}} Kg</font></td>
+                                                  <td  style="text-align: center;" >{{vcp_dai[i.counter]}} $</font></td>
+                                                  <td  style="text-align: center;" >{{vco_dai[i.counter]}} $</font></td>
+                                                  <td  style="text-align: center;" >{{vcosto_final[i.counter]}} $</font></td>
+                                                  <td  style="text-align: center;" >{{vprecio_venta[i.counter]}} $</font></td>
+                                                  <td  style="text-align: center;" >{{vuti_kg[i.counter]}} $</font></td>
+                                                  <td  style="text-align: center;" >{{vuti_total[i.counter]}} $</font></td>
+                                                  <td  style="text-align: center;" >{{vuti_mh[i.counter]}} $</font></td>
+                                                  <td  style="text-align: center;" >{{vuti_proaba[i.counter]}} $</font></td>
+                                                  
+                                                    
+                                              
+                                                  <div class="row-md-7">    
+                                             <!-- <a href="/edit/{{table.0}}" class="btn btn-sm btn-secondary">editar</a>-->
+                                            <!-- <td> </td>
+                                              <td>
+                                                  <center>
+                                                  <a href="/bancos/detalle/{{table.4}}"  class="btn btn-sm btn-success ">Detalle</a>
+                                              </center>
+                                          </td>-->
+                                             <!--  <td>
+                                                  <center>
+                                                  <a href="/delete/{{table.0}}" class="btn btn-sm btn-danger btn-delete">borrar</a>
+                                                  </center>
+                                              </td> -->
+                                                  </div>
+                                              </td>
+                                          </tr>
+                                          {% set i.counter=i.counter + 1 %}
+                                          {% endfor %}
+                                          
+                      
+                      </table>
+ 
+</div>                      
+<script>
+      function printDiv(divId,
+      title) {
+    
+      let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
+    
+      mywindow.document.write(`<html><head><title>${title}</title>`);
+      mywindow.document.write('</head><body >'+`<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">`);
+     //mywindow.document.write(`<link rel="stylesheet" type="text/css" href="../static/css/main.css" media="all" media="print">`);
+      mywindow.document.write(document.getElementById(divId).innerHTML);
+      mywindow.document.write('</body></html>');
+    
+      mywindow.document.close(); // necessary for IE >= 10
+      mywindow.focus(); // necessary for IE >= 10*/
+    
+      mywindow.print();
+      mywindow.close();
+    
+      return true;
+    }    
+</script>
+{% endblock%}

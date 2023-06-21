@@ -1,0 +1,33 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+<form class="form-signin" action="/pre_confirmacion_particion_gastos_operativos/{{id}}/{{monto}}/{{new_monto}}/{{semanas}} " method="POST">
+    <div class="form-group ml-4">
+<hr>
+    
+{% for j in range(semanas) %}
+<div class="form-group">
+    <h6>semana {{j +1}} </h6>
+  <input type="date" class="form-control" id="fecha" name="fecha{{j}}" placeholder="fecha"
+value="today"
+min="2018-01-01" max="2060-12-31">
+ <!-- <input type="text" class="form-control" id="fecha" name="fecha" placeholder="fecha">-->
+</div>
+  <hr>
+ {%endfor%}
+  
+
+    
+
+    <div class="form-group">
+    <center>
+      <button class=" btn btn-sm btn-primary" type="submit">Agregar</button>
+      </center>
+  </div>
+  <hr>
+</div>
+
+
+
+{% endblock%}

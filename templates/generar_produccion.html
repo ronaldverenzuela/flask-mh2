@@ -1,0 +1,117 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+{% with messages = get_flashed_messages(category_filter=["inventario_insuficiente"]) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+    {% endfor %}
+    </ul>
+  {% endif %}
+  
+{% endwith %}
+
+
+{% with messages = get_flashed_messages(category_filter=["baches_nulo"]) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+    {% endfor %}
+    </ul>
+  {% endif %}
+  
+{% endwith %}
+   <!-- Tabla formulas-->
+   {% set i=namespace() %}
+      {% set i.counter=0 %}
+      {% set j=namespace() %}
+      {% set j.counter=0 %}
+      {% set k=namespace() %}
+      {% set k.counter=1 %}
+{% for cont_rango in validacion %}
+{% set k.counter=k.counter +1 %}
+
+{% endfor %}
+
+{% for q in range(k.counter) %}
+
+{% if validacion[i.counter]==1 %}
+
+{% set j.counter=0 %}
+<div class="container">   
+<div class="col">
+    <div class="col-xl-3 ">
+        
+                        
+                            <table class="table table-striped table-hover table-bordered bg-white table-sm " class="wrapper-table" class="jumbotron" style="white-space: nowrap"  >
+                                <thead><center>
+                                    <div class="text-xs text-uppercase mt-4 " style="white-space: nowrap !important;">
+                                        {{alimento[i.counter]}} <center>
+                                            <a href="/producir/{{i.counter}}/{{costo_kg[i.counter]}}" class="boton-produccion btn-sm btn-success "name="{{j.counter}}" id="{{j.counter}}">Producir</a>
+                                        </center> </div>
+                                  <tr class="table-primary ">
+                                
+                                                          
+                                    <td  style="text-align: center;" valign="middle"><h5 >PRODUCTO</h5></td>  
+                                    <td  style="text-align: center;" valign="middle"><h5 >CANTIDAD</h5></td>  
+                                    <td  style="text-align: center;" valign="middle"><h5 >TOTAL = {{suma_costo[i.counter]}} </h5></td>
+                                    <td  style="text-align: center;" valign="middle"><h5 >POR Kg = {{costo_kg[i.counter]}} </h5></td> 
+                                    <td  style="text-align: center;" valign="middle"><h5 >POR SACO = {{costo_saco[i.counter]}} </h5></td> 
+                                   
+                                   <!-- <td style="text-align: center;">Operacion</td>-->
+                                  </tr>
+                                </thead>
+                {% for materia in range(longitud_matriz) %}
+
+                {% if materia_prima[j.counter,i.counter] == "" %}
+
+                {% else %}
+
+                
+                                        
+                                           <tr> 
+                                            <td> <h6>{{materia_prima[j.counter,i.counter] }}   </h6></td>
+                                        <td><h6>  {{ kilos[j.counter,i.counter]}}</h6></td>
+                                </tr>
+                                
+                                
+                                    {% endif %}
+                                    {% set j.counter=j.counter + 1 %}
+                                {% endfor %}
+                            </center>
+                                </div>
+                               
+                            
+                            </div>
+                        </div>
+                    </div>
+
+{% endif %}
+{% set i.counter=i.counter + 1 %}
+
+
+
+{% endfor %}
+
+
+
+
+   
+
+
+
+{% endblock%}

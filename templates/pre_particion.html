@@ -1,0 +1,29 @@
+{% extends "prototipo.html" %}
+
+{% block content %}
+
+<form class="form-signin" action="/aceptar_pre_particion_gastos_operativos/{{id}}" method="POST">
+    <div class="form-group ml-4">
+<hr>
+    
+<div class="form-group"> 
+    <h6>Prticionar Nº de Semanas</h6> 
+    <input type="text" class="form-control" id="semanas" name="semanas" >                  
+  </div>
+  <hr>
+ 
+  
+
+    
+
+    <div class="form-group">
+    <center>
+      <button class=" btn btn-sm btn-primary" type="submit">Agregar</button>
+      </center>
+  </div>
+  <hr>
+</div>
+
+
+
+{% endblock%}
