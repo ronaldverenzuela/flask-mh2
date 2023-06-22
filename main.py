@@ -13,8 +13,8 @@ import re
 import os
 
 
-#app = Flask(__name__)
-app = Flask("Web")
+app = Flask(__name__)
+#app = Flask("Web")
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
 
